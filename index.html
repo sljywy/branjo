@@ -4,33 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gtifab s.r.o. | Chiptuning & Kódovanie</title>
+    <title>gtifab s.r.o.</title>
 
-    <!-- SEO -->
-    <meta name="description" content="Profesionálny chiptuning a kódovanie vozidiel v Bratislave. Stage 1, Stage 2, DPF/EGR/AdBlue off, online kódovanie VW, Audi, BMW, Mercedes a ďalších.">
-    <meta name="keywords" content="chiptuning Bratislava, kódovanie áut, úprava riadiacej jednotky, Stage 1, DPF off, EGR off, AdBlue off">
+    <!-- SEO & Social Sharing Meta Tags -->
+    <meta name="description" content="gtifab s.r.o. - komplexný autoservis v Bratislave. ...">
+    <meta name="keywords" content="autoservis Bratislava, chiptuning, ...">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="gtifab s.r.o. | Chiptuning & Kódovanie">
-    <meta property="og:description" content="Profesionálny chiptuning a kódovanie vozidiel v Bratislave.">
+    <meta property="og:title" content="gtifab s.r.o. - Komplexná starostlivosť o Vaše vozidlo">
+    <meta property="og:description" content="Profesionálny autoservis v Bratislave – ...">
     <meta property="og:image" content="https://www.gtifab.sk/og-preview.jpg">
+    <meta property="og:image:width" content="1200" /> <!-- Recommended: at least 1200x630 px -->
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://www.gtifab.sk/">
     <meta property="og:type" content="website">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="gtifab s.r.o. - Autoservis Bratislava">
+    <meta name="twitter:description" content="Komplexný servis – ...">
+    <meta name="twitter:image" content="https://www.gtifab.sk/og-preview.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Figtree font -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#f5c400',
-                        secondary: '#c9a000',
-                        accent: '#f5c400',
-                        dark: '#0f172a',
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b',
+                        dark: '#1e293b',
                     },
                     fontFamily: {
                         sans: ['Figtree', 'system-ui', 'sans-serif'],
@@ -41,650 +52,460 @@
     </script>
 
     <style>
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
+        .hero-image {
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
         }
-        .hero-overlay {
-            background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.45));
-        }
+
         .service-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
         .nav-link:after {
             content: '';
             display: block;
             width: 0;
             height: 2px;
-            background: #f5c400;
+            background: #f59e0b;
             transition: width .3s;
         }
+
         .nav-link:hover:after {
             width: 100%;
         }
+
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
+            transition: max-height 0.5s ease-out;
         }
+
         .mobile-menu.open {
-            max-height: 640px;
+            max-height: 500px;
         }
+
         .mobile-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 40;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease;
         }
+
         .mobile-overlay.show {
             opacity: 1;
             pointer-events: auto;
         }
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1.25rem;
-            padding-right: 2.5rem;
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
         }
-        #langSelect, #langSelectMobile {
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: none;
-            min-width: 72px;
-            text-align: center;
-            text-align-last: center;
-            font-weight: 700;
-            letter-spacing: 0.06em;
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+            opacity: 0;
+        }
+
+        .lightbox img.visible {
+            opacity: 1;
+        }
+
+        .lightbox img:hover {
+            transform: scale(1.03);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 60px;
+            cursor: pointer;
+            text-shadow: 0 0 12px black;
+            transition: transform 0.25s;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.25);
+        }
+
+        #gallery img {
+            cursor: zoom-in;
+        }
+
+        @media (max-width: 768px) {
+            #contact .grid>div {
+                align-items: center;
+            }
         }
     </style>
 </head>
 
-<body class="font-sans antialiased text-gray-900 bg-gray-950">
+<body class="font-sans antialiased text-gray-900">
 
     <!-- Header -->
-    <header class="bg-gray-950/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-5 flex justify-between items-center">
+    <header class="bg-amber-60/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center">
-                <img src="logo.png" alt="Logo" class="h-12 mr-3">
-                <span class="text-2xl md:text-3xl font-bold text-white">gtifab<span class="text-primary"> s.r.o.</span></span>
+                <img src="logo.png" alt="Logo" class="h-10 mr-3">
+                <span class="text-2xl font-bold text-dark">gtifab<span class="text-accent"> s.r.o.</span></span>
             </a>
 
-            <nav class="hidden lg:flex items-center space-x-7">
-                <a href="#home" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_home">Domov</a>
-                <a href="#chiptuning" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_chip">Chiptuning</a>
-                <a href="#novinky" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_news">Novinky ECU</a>
-                <a href="#cennik" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_price">Cenník</a>
-                <a href="#kodovanie" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_code">Kódovanie</a>
-                <a href="#reviews" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_reviews">Recenzie</a>
-                <a href="#contact" class="nav-link text-gray-300 hover:text-white font-semibold text-lg" data-i18n="nav_contact">Kontakt</a>
-                <select id="langSelect" class="bg-gray-800 border border-gray-600 text-white text-base rounded-md px-4 py-2">
-                    <option value="sk">SK</option>
-                    <option value="en">EN</option>
-                    <option value="de">DE</option>
-                    <option value="uk">UA</option>
-                    <option value="sr">SR</option>
-                </select>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium">Domov</a>
+                <a href="#services" class="nav-link font-medium">Služby</a>
+                <a href="#about" class="nav-link font-medium">O nás</a>
+                <a href="#gallery" class="nav-link font-medium">Galéria</a>
+                <a href="#contact" class="nav-link font-medium">Kontakt</a>
             </nav>
 
-            <div class="lg:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-dark focus:outline-none">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-gray-900 w-full px-4 border-t border-gray-800">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white w-full px-4 shadow-lg">
             <div class="flex flex-col space-y-4 py-4">
-                <a href="#home" class="text-gray-300 font-medium" data-i18n="nav_home">Domov</a>
-                <a href="#chiptuning" class="text-gray-300 font-medium" data-i18n="nav_chip">Chiptuning</a>
-                <a href="#novinky" class="text-gray-300 font-medium" data-i18n="nav_news">Novinky ECU</a>
-                <a href="#cennik" class="text-gray-300 font-medium" data-i18n="nav_price">Cenník</a>
-                <a href="#kodovanie" class="text-gray-300 font-medium" data-i18n="nav_code">Kódovanie</a>
-                <a href="#reviews" class="text-gray-300 font-medium" data-i18n="nav_reviews">Recenzie</a>
-                <a href="#contact" class="text-gray-300 font-medium" data-i18n="nav_contact">Kontakt</a>
-                <select id="langSelectMobile" class="bg-gray-800 border border-gray-600 text-white text-base rounded-md px-4 py-2">
-                    <option value="sk">Slovenčina</option>
-                    <option value="en">English</option>
-                    <option value="de">Deutsch</option>
-                    <option value="uk">Українська</option>
-                    <option value="sr">Srpski</option>
-                </select>
-                <a href="tel:+421910870807" class="bg-primary text-black py-2 px-4 rounded text-center font-bold">
+                <a href="#home" class="font-medium border-b pb-2">Domov</a>
+                <a href="#services" class="font-medium border-b pb-2">Služby</a>
+                <a href="#about" class="font-medium border-b pb-2">O nás</a>
+                <a href="#gallery" class="font-medium border-b pb-2">Galéria</a>
+                <a href="#contact" class="font-medium border-b pb-2">Kontakt</a>
+                <a href="tel:+421910870807" class="bg-primary text-white py-2 px-4 rounded text-center font-bold">
                     <i class="fas fa-phone mr-2"></i> Volať
                 </a>
             </div>
         </div>
     </header>
 
+    <!-- Overlay za mobilni meni -->
     <div id="mobile-overlay" class="mobile-overlay"></div>
 
-    <!-- Hero with Video Background -->
-    <section id="home" class="relative min-h-[85vh] flex items-center overflow-hidden">
-        <!-- Stavi svoj video u isti folder kao index.html i nazovi ga hero.mp4 -->
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="hero.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 hero-overlay z-10"></div>
-
-        <div class="container mx-auto px-4 relative z-20">
-            <div class="max-w-2xl text-white">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    <span id="typewriter"></span><span id="cursor" class="text-primary">_</span>
+    <!-- Hero -->
+    <section id="home" class="hero-image min-h-[70vh] flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="max-w-xl text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                    <span id="typewriter"></span><span id="cursor">_</span>
                 </h1>
-                <p class="text-sm tracking-widest text-primary font-semibold mb-3" data-i18n="hero_kicker">GTIFAB • BRATISLAVA</p>
-                <p class="text-xl md:text-2xl mb-8 text-gray-200" data-i18n="hero_sub">
-                    Profesionálny chiptuning a kódovanie vozidiel. Viac výkonu, lepšia odozva, individuálne nastavenie.
-                </p>
-                <p class="text-sm text-gray-300 mb-8" data-i18n="hero_warranty">2 roky záruka na software a RJ • návrat na originál zdarma kedykoľvek</p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#chiptuning" class="bg-primary hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-lg transition" data-i18n="btn_check">
-                        Overiť výkon auta
-                    </a>
-                    <a href="tel:+421910870807" class="border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition">
-                        <i class="fas fa-phone mr-2"></i> <span data-i18n="btn_call">Volať</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ECU news slider -->
-    <section id="novinky" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="news_title">Novinky riadiacich jednotiek</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-400" data-i18n="news_sub">Nové ECU / TCU podľa pridania od výrobcov. Upravte text podľa aktuálnych projektov.</p>
-            </div>
-            <div class="relative max-w-5xl mx-auto">
-                <div id="newsTrack" class="overflow-hidden">
-                    <div id="newsSlides" class="flex transition-transform duration-500">
-                        <article class="min-w-full px-2">
-                            <div class="bg-gray-950 border border-gray-800 rounded-2xl p-8">
-                                <div class="text-primary text-sm font-semibold mb-2">BMW • MDG1</div>
-                                <h3 class="text-2xl font-bold text-white mb-3" data-i18n="n1t">Nová podpora BMW MDG1</h3>
-                                <p class="text-gray-400" data-i18n="n1p">Čítanie a zápis novších BMW jednotiek.</p>
-                            </div>
-                        </article>
-                        <article class="min-w-full px-2">
-                            <div class="bg-gray-950 border border-gray-800 rounded-2xl p-8">
-                                <div class="text-primary text-sm font-semibold mb-2">VAG • MG1 / MD1</div>
-                                <h3 class="text-2xl font-bold text-white mb-3" data-i18n="n2t">VW / Audi MG1 a MD1</h3>
-                                <p class="text-gray-400" data-i18n="n2p">Aktualizované postupy pre novšie motory koncernu VAG.</p>
-                            </div>
-                        </article>
-                        <article class="min-w-full px-2">
-                            <div class="bg-gray-950 border border-gray-800 rounded-2xl p-8">
-                                <div class="text-primary text-sm font-semibold mb-2">Mercedes • MDG1</div>
-                                <h3 class="text-2xl font-bold text-white mb-3" data-i18n="n3t">Mercedes novšie ECU</h3>
-                                <p class="text-gray-400" data-i18n="n3p">Pridajte konkrétny model, ktorý ste práve spracovali pre zákazníka.</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="flex justify-center gap-3 mt-6">
-                    <button id="newsPrev" class="px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700">‹</button>
-                    <button id="newsNext" class="px-4 py-2 bg-primary text-black rounded-lg font-bold">›</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 flex items-start gap-4">
-                    <div class="bg-primary rounded-full p-3"><i class="fas fa-tachometer-alt text-white text-xl"></i></div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Stage 1 / Stage 2</h3>
-                        <p class="text-gray-400" data-i18n="feat1">Bezpečné zvýšenie výkonu a krútiaceho momentu s ohľadom na spoľahlivosť.</p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 flex items-start gap-4">
-                    <div class="bg-primary rounded-full p-3"><i class="fas fa-microchip text-white text-xl"></i></div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-2 text-white">DPF / EGR / AdBlue</h3>
-                        <p class="text-gray-400" data-i18n="feat2">Vypnutie systémov, riešenie problémov a optimalizácia softvéru.</p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 flex items-start gap-4">
-                    <div class="bg-primary rounded-full p-3"><i class="fas fa-code text-white text-xl"></i></div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-2 text-white" data-i18n="feat3t">Kódovanie</h3>
-                        <p class="text-gray-400" data-i18n="feat3">VW, Audi, BMW, Mercedes, Škoda, SEAT a ďalšie značky.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chiptuning Section with Selector -->
-    <section id="chiptuning" class="py-20 bg-gray-950">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white">Chiptuning</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-400 text-lg" data-i18n="chip_sub">Vyberte si značku, model a motor a okamžite uvidíte originálny výkon a Stage 1 potenciál.</p>
-            </div>
-
-            <!-- Vehicle Selector -->
-            <div class="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-10 shadow-2xl">
-                <div class="mb-6">
-                    <label class="block text-sm text-gray-400 mb-2" data-i18n="lbl_search">Rýchle hľadanie</label>
-                    <input id="quickSearch" type="text" placeholder="napr. Golf 2.0 TDI 150..." data-i18n-placeholder="ph_search"
-                        class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary">
-                    <div id="searchResults" class="hidden mt-2 max-h-64 overflow-y-auto bg-gray-800 border border-gray-700 rounded-lg"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2" data-i18n="lbl_make">Značka</label>
-                        <select id="make" class="form-select w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary">
-                            <option value="" data-i18n="opt_make">Vyberte značku</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2" data-i18n="lbl_model">Model</label>
-                        <select id="model" class="form-select w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary" disabled>
-                            <option value="" data-i18n="opt_model">Najprv značku</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2" data-i18n="lbl_engine">Motor</label>
-                        <select id="engine" class="form-select w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary" disabled>
-                            <option value="" data-i18n="opt_engine">Najprv model</option>
-                        </select>
-                    </div>
-                    <div class="flex items-end">
-                        <button id="searchBtn" class="w-full bg-primary hover:bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                            <span data-i18n="btn_power">Zobraziť výkon</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Result Box -->
-                <div id="resultBox" class="hidden mt-8 p-6 bg-gray-800 rounded-xl border border-gray-700">
-                    <div class="mb-6">
-                        <h3 id="resultTitle" class="text-2xl font-bold text-white mb-1"></h3>
-                        <p id="resultEngine" class="text-gray-400"></p>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="bg-gray-900 rounded-xl p-4 border border-gray-700">
-                            <div class="text-white font-semibold mb-3">KS / HP</div>
-                            <div class="flex items-end gap-6 h-36">
-                                <div class="flex-1 flex flex-col items-center justify-end h-full">
-                                    <div id="barOrigHP" class="w-12 bg-gray-500 rounded-t" style="height:40%"></div>
-                                    <div class="text-xs text-gray-400 mt-2" data-i18n="lbl_orig">Originál</div>
-                                    <div class="text-white font-bold"><span id="origHP">—</span></div>
-                                </div>
-                                <div class="flex-1 flex flex-col items-center justify-end h-full">
-                                    <div id="barTunedHP" class="w-12 bg-primary rounded-t" style="height:60%"></div>
-                                    <div class="text-xs text-primary mt-2">Stage 1</div>
-                                    <div class="text-primary font-bold"><span id="tunedHP">—</span></div>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-sm text-gray-300">+ <span id="diffHP">—</span> KS</div>
-                        </div>
-                        <div class="bg-gray-900 rounded-xl p-4 border border-gray-700">
-                            <div class="text-white font-semibold mb-3">Nm</div>
-                            <div class="flex items-end gap-6 h-36">
-                                <div class="flex-1 flex flex-col items-center justify-end h-full">
-                                    <div id="barOrigNM" class="w-12 bg-gray-500 rounded-t" style="height:40%"></div>
-                                    <div class="text-xs text-gray-400 mt-2" data-i18n="lbl_orig">Originál</div>
-                                    <div class="text-white font-bold"><span id="origNM">—</span></div>
-                                </div>
-                                <div class="flex-1 flex flex-col items-center justify-end h-full">
-                                    <div id="barTunedNM" class="w-12 bg-primary rounded-t" style="height:60%"></div>
-                                    <div class="text-xs text-primary mt-2">Stage 1</div>
-                                    <div class="text-primary font-bold"><span id="tunedNM">—</span></div>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-sm text-gray-300">+ <span id="diffNM">—</span> Nm</div>
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                        <h4 class="text-white font-semibold mb-3">Ďalšie možnosti</h4>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-300">AdBlue / SCR off</div>
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-300">EGR off</div>
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-300">DPF / FAP off</div>
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-300">DTC removal</div>
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-300">Flaps / swirl</div>
-                            <div class="bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-300">Vmax off</div>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-3">Dostupnosť overíme podľa ECU. Čítame cez Flex, Alientech a Autotuner.</p>
-                    </div>
-                    <div class="mt-6 pt-6 border-t border-gray-700 flex flex-wrap gap-4">
-                        <a href="tel:+421910870807" class="bg-primary hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-lg transition">
-                            <i class="fas fa-phone mr-2"></i> <span data-i18n="btn_order">Objednať úpravu</span>
-                        </a>
-                        <a href="https://wa.me/421910870807" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition">
-                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- What we offer -->
-            <div class="mt-16 grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="do_title">Čo všetko robíme</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li>► Chiptuning Stage 1, 2, 3, 4</li>
-                        <li>► DPF / FAP off</li>
-                        <li>► EGR / AGR off</li>
-                        <li>► AdBlue / SCR off</li>
-                        <li>► Pop & Bang / Crackle map</li>
-                        <li>► Launch Control</li>
-                        <li>► Speed limiter off</li>
-                        <li>► Start/Stop off</li>
-                        <li data-i18n="d9">► Immo off / klonovanie jednotiek</li>
-                        <li data-i18n="d10">► Nahranie originálneho softvéru</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="veh_title">Pre aké vozidlá</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li data-i18n="v1">► Osobné automobily</li>
-                        <li data-i18n="v2">► Dodávky</li>
-                        <li data-i18n="v3">► Nákladné vozidlá</li>
-                        <li data-i18n="v4">► Motocykle</li>
-                        <li data-i18n="v5">► Autobusy</li>
-                        <li data-i18n="v6">► Traktory a stavebné stroje</li>
-                        <li data-i18n="v7">► Lode</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools -->
-    <section id="technologie" class="py-16 bg-gray-950">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="tech_title">Moderné technológie</h2>
-            <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-            <p class="text-gray-400 mb-10 max-w-3xl mx-auto" data-i18n="tech_sub">Pracujeme s profesionálnymi zariadeniami svetových výrobcov.</p>
-            <div class="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-8">
-                    <div class="text-primary font-bold text-2xl mb-2">FLEX</div>
-                    <p class="text-gray-400 text-sm">Magicmotorsport Flex</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-8">
-                    <div class="text-primary font-bold text-2xl mb-2">ALIENTECH</div>
-                    <p class="text-gray-400 text-sm">KESS / K-TAG / ECM Titanium</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-8">
-                    <div class="text-primary font-bold text-2xl mb-2">AUTOTUNER</div>
-                    <p class="text-gray-400 text-sm" data-i18n="at_sub">Slave / Master programovanie</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Price list -->
-    <section id="cennik" class="py-20 bg-gray-950">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="price_title">Cenník</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-400" data-i18n="price_sub">Ceny sú orientačné. Presnú cenu potvrdíme podľa vozidla a ECU.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-white font-bold text-xl mb-2">Stage 1</h3>
-                    <p class="text-primary text-3xl font-bold mb-3">od 199 €</p>
-                    <p class="text-gray-400 text-sm" data-i18n="p1">Úprava výkonu a krútiaceho momentu. Záruka 2 roky.</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-white font-bold text-xl mb-2">Stage 2</h3>
-                    <p class="text-primary text-3xl font-bold mb-3">od 249 €</p>
-                    <p class="text-gray-400 text-sm" data-i18n="p2">Pokročilejšia úprava podľa hardvéru vozidla.</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-white font-bold text-xl mb-2">DPF / EGR / AdBlue</h3>
-                    <p class="text-primary text-3xl font-bold mb-3">od 149 €</p>
-                    <p class="text-gray-400 text-sm" data-i18n="p3">Softvérové riešenia problémov so systémami.</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-white font-bold text-xl mb-2" data-i18n="price_code">Kódovanie</h3>
-                    <p class="text-primary text-3xl font-bold mb-3">od 49 €</p>
-                    <p class="text-gray-400 text-sm" data-i18n="p4">Comfort, svetlá, CarPlay, Start/Stop a ďalšie.</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-white font-bold text-xl mb-2" data-i18n="price_keys">Programovanie kľúčov</h3>
-                    <p class="text-primary text-3xl font-bold mb-3">od 89 €</p>
-                    <p class="text-gray-400 text-sm" data-i18n="p5">Nový kľúč, immo, spárovanie s vozidlom.</p>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                    <h3 class="text-white font-bold text-xl mb-2" data-i18n="price_orig">Návrat na originál</h3>
-                    <p class="text-primary text-3xl font-bold mb-3">0 €</p>
-                    <p class="text-gray-400 text-sm" data-i18n="price_orig_sub">Kedykoľvek zdarma, originálny software archivujeme.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key programming -->
-    <section id="kluce" class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white text-center" data-i18n="keys_title">Programovanie kľúčov</h2>
-            <div class="h-1 w-24 bg-primary mx-auto mb-8"></div>
-            <p class="text-gray-400 text-center mb-8" data-i18n="keys_sub">Strata kľúča, nový kľúč, immo off/on, spárovanie po výmene RJ. Doplňte značky, ktoré reálne robíte.</p>
-            <ul class="text-gray-300 space-y-2 max-w-xl mx-auto">
-                <li>► VAG / BMW / Mercedes / Ford / Renault</li>
-                <li data-i18n="k2">► Programovanie a adaptácia</li>
-                <li data-i18n="k3">► Záloha pôvodného stavu</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Reviews -->
-    <section id="reviews" class="py-20 bg-gray-950">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="rev_title">Recenzie</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-400" data-i18n="rev_sub">Recenzie zákazníkov.</p>
-            </div>
-            <div id="reviewsGrid" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"></div>
-
-            <div class="max-w-2xl mx-auto mt-14 bg-gray-900 border border-gray-800 rounded-2xl p-6 md:p-8">
-                <h3 class="text-white text-2xl font-bold mb-2" data-i18n="rev_form_title">Napísať recenziu</h3>
-                <p class="text-gray-400 text-sm mb-6" data-i18n="rev_form_sub">Recenzia nejde hneď na web. Najprv nám príde na kontrolu.</p>
-                <form id="reviewForm" class="space-y-4">
-                    <input type="text" name="website" id="revTrap" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-2" data-i18n="rev_name">Meno</label>
-                            <input id="revName" required minlength="2" maxlength="40" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-2" data-i18n="rev_contact">Telefón alebo email</label>
-                            <input id="revContact" required minlength="6" maxlength="80" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2" data-i18n="rev_car">Auto / služba</label>
-                        <input id="revCar" required minlength="3" maxlength="80" placeholder="napr. Octavia 2.0 TDI, Stage 1" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3">
-                    </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2" data-i18n="rev_rate">Hodnotenie</label>
-                        <select id="revStars" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3">
-                            <option value="5">5 ★</option>
-                            <option value="4">4 ★</option>
-                            <option value="3">3 ★</option>
-                            <option value="2">2 ★</option>
-                            <option value="1">1 ★</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2" data-i18n="rev_text">Text</label>
-                        <textarea id="revText" required minlength="20" maxlength="400" rows="4" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3"></textarea>
-                    </div>
-                    <button type="submit" class="bg-primary hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-lg">Odoslať na schválenie</button>
-                    <p id="revOk" class="hidden text-green-400 text-sm">Ďakujeme. Recenzia bola odoslaná na kontrolu.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kódovanie Section -->
-    <section id="kodovanie" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white" data-i18n="code_title">Kódovanie</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-400 text-lg" data-i18n="code_sub">Online a offline kódovanie pre Volkswagen, Audi, BMW, Mercedes, Škoda, SEAT/CUPRA a ďalšie.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="bg-gray-800 border border-gray-700 rounded-xl p-6">
-                    <h3 class="font-bold text-lg text-white mb-3" data-i18n="c1t">Komfort & Multimédia</h3>
-                    <ul class="text-gray-400 space-y-1 text-sm">
-                        <li data-i18n="c1a">• Video počas jazdy</li>
-                        <li data-i18n="c1b">• CarPlay / Android Auto aktivácia</li>
-                        <li data-i18n="c1c">• Needle sweep (ručičky)</li>
-                        <li data-i18n="c1d">• Ambientné osvetlenie – viac farieb</li>
-                        <li data-i18n="c1e">• AMG menu / Sport menu</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 rounded-xl p-6">
-                    <h3 class="font-bold text-lg text-white mb-3" data-i18n="c2t">Svetlá & Asistenty</h3>
-                    <ul class="text-gray-400 space-y-1 text-sm">
-                        <li data-i18n="c2a">• Denné svietenie (DRL)</li>
-                        <li data-i18n="c2b">• Zadné DRL</li>
-                        <li data-i18n="c2c">• Hmlovky pri cúvaní</li>
-                        <li data-i18n="c2d">• Vypnutie upozornenia na pásy</li>
-                        <li data-i18n="c2e">• Start/Stop deaktivácia</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 rounded-xl p-6">
-                    <h3 class="font-bold text-lg text-white mb-3" data-i18n="c3t">Ďalšie funkcie</h3>
-                    <ul class="text-gray-400 space-y-1 text-sm">
-                        <li data-i18n="c3a">• Lap Timer</li>
-                        <li data-i18n="c3b">• Zamknutie naštartovaného auta</li>
-                        <li data-i18n="c3c">• Úprava teploty vyhrievaných sedadiel</li>
-                        <li data-i18n="c3d">• Vypnutie zadného stierača na R</li>
-                        <li data-i18n="c3e">• A mnoho ďalších...</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="text-center mt-10">
-                <a href="tel:+421910870807" class="inline-block bg-primary hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-lg transition">
-                    <span data-i18n="btn_options">Zistiť možnosti pre tvoje auto</span>
+                <p class="text-xl mb-8">S nami sa vaše vozidlo dostane do rúk skúsených odborníkov, ktorí sa postarajú o
+                    každý detail. Vaša spokojnosť je našou prioritou.</p>
+                <a href="tel:+421910870807"
+                    class="border-2 border-white hover:bg-white hover:text-dark text-white font-bold py-3 px-6 rounded-lg transition">
+                    <i class="fas fa-phone mr-2"></i> Volať
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="py-20 bg-gray-950">
+    <!-- Features -->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white" data-i18n="about_title">O nás</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-8"></div>
-                <p class="text-gray-400 text-lg leading-relaxed mb-10">
-                    <span data-i18n="about_text">Špecializujeme sa na softvérové úpravy riadiacich jednotiek a kódovanie vozidiel. Používame profesionálne nástroje a máme dlhoročné skúsenosti s širokým spektrom značiek.</span>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md flex items-center">
+                    <div class="bg-primary rounded-full p-4 mr-4"><i class="fas fa-clock text-white text-2xl"></i></div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Rýchla obsluha</h3>
+                        <p class="text-gray-600">Pre väčšinu rýchlych opráv je k dispozícii služba v ten istý deň.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex items-center">
+                    <div class="bg-primary rounded-full p-4 mr-4"><i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">24-mesačná záruka na náhradné diely</h3>
+                        <p class="text-gray-600">Všetky naše opravy sú so zárukou kvality.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex items-center">
+                    <div class="bg-primary rounded-full p-4 mr-4"><i class="fas fa-user-tie text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Certifikovaní odborníci</h3>
+                        <p class="text-gray-600">Vysoko kvalifikovaní technici s viac ako 18 rokmi skúseností.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark">Naše služby</h2>
+                <div class="h-1 w-24 bg-accent mx-auto mb-8"></div>
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+                    Ponúkame komplexné opravy automobilov, aby sme udržali vaše vozidlo v perfektnom stave.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="service-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                    <div class="h-48 overflow-hidden"><img src="autoservis.webp" alt=""
+                            class="w-full h-full object-cover"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Autoservis</h3>
+                        <p class="text-gray-600 mb-4">Diagnostika vozidla</p>
+                        <a href="#" data-modal="modal-0"
+                            class="text-primary font-semibold flex items-center open-modal">
+                            Zistite viac <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="service-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                    <div class="h-48 overflow-hidden"><img src="elektroservis.webp" alt=""
+                            class="w-full h-full object-cover"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Elektroservis</h3>
+                        <p class="text-gray-600 mb-4">Diagnostika vozidla</p>
+                        <a href="#" data-modal="modal-1"
+                            class="text-primary font-semibold flex items-center open-modal">
+                            Zistite viac <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="service-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                    <div class="h-48 overflow-hidden"><img src="chip.webp" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Chiptuning - Úprava RJ</h3>
+                        <p class="text-gray-600 mb-4">Vozidlá - Osobné, Dodávky, Kamión, Motorky, Lode, Traktory,
+                            Bágery, Autobusy</p>
+                        <a href="#" data-modal="modal-2"
+                            class="text-primary font-semibold flex items-center open-modal">
+                            Zistite viac <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="service-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                    <div class="h-48 overflow-hidden"><img src="kodovanie.webp" alt=""
+                            class="w-full h-full object-cover"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Kódovanie</h3>
+                        <p class="text-gray-600 mb-4">Volkswagen, Audi, BMW, MINI, Toyota, Škoda, SEAT/CUPRA,
+                            Lamborghini, Bentley, Lexus, Rolls-Royce a Mercedes-Benz</p>
+                        <a href="#" data-modal="modal-3"
+                            class="text-primary font-semibold flex items-center open-modal">
+                            Zistite viac <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="service-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                    <div class="h-48 overflow-hidden"><img src="otah.webp" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Odťahová služba</h3>
+                        <p class="text-gray-600 mb-4">Odťahové služby v rámci EU a mimo EU 3500kg</p>
+                        <a href="#" data-modal="modal-4"
+                            class="text-primary font-semibold flex items-center open-modal">
+                            Zistite viac <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="service-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                    <div class="h-48 overflow-hidden"><img src="stk.webp" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">ZABEZPEČENIE STK/EK</h3>
+                        <p class="text-gray-600 mb-4">PRÍPRAVA VOZIDLA NA STK/EK</p>
+                        <a href="#" data-modal="modal-5"
+                            class="text-primary font-semibold flex items-center open-modal">
+                            Zistite viac <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark">O nás</h2>
+                <div class="h-1 w-24 bg-accent mx-auto mb-8"></div>
+
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+                    Vítame Vás v našom autoservise, robíme komplexnú starostlivosť o vaše vozidlo!
+                    Ponúkame širokú škálu služieb vrátane rôznych typov opráv, elektroservisu, odťahovej služby
+                    a softvérovej úpravy riadiacich jednotiek.
                 </p>
 
-                <div class="grid sm:grid-cols-3 gap-6">
-                    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                        <div class="text-4xl font-bold text-primary mb-2">18+</div>
-                        <div class="text-gray-400" data-i18n="stat_years">Rokov skúseností</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                    <div class="flex items-center justify-center gap-4 bg-white p-6 rounded-xl shadow-md">
+                        <div class="bg-primary rounded-full p-4 flex-shrink-0">
+                            <i class="fas fa-check text-white text-2xl"></i>
+                        </div>
+                        <span class="font-semibold text-lg">Najnovšie vybavenie</span>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                        <div class="text-4xl font-bold text-primary mb-2">15 000+</div>
-                        <div class="text-gray-400" data-i18n="stat_cars">Upravených vozidiel</div>
+
+                    <div class="flex items-center justify-center gap-4 bg-white p-6 rounded-xl shadow-md">
+                        <div class="bg-primary rounded-full p-4 flex-shrink-0">
+                            <i class="fas fa-check text-white text-2xl"></i>
+                        </div>
+                        <span class="font-semibold text-lg">Dlhoročné skúsenosti</span>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                        <div class="text-4xl font-bold text-primary mb-2">100%</div>
-                        <div class="text-gray-400" data-i18n="stat_ok">Záruka spokojnosti</div>
-                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-4xl font-bold mb-2">15,000+</div>
+                    <div class="text-gray-200">Vozidlá servisované</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold mb-2">18</div>
+                    <div class="text-gray-200">Roky skúseností</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold mb-2">100%</div>
+                    <div class="text-gray-200">Záruka spokojnosti</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Gallery -->
-    <section id="gallery" class="py-16 bg-gray-900">
+    <section id="gallery" class="py-16">
         <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="gal_title">Galéria našej práce</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark">Galéria našej práce</h2>
+                <div class="h-1 w-24 bg-accent mx-auto mb-8"></div>
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+                    Pozrite si niektoré z našich nedávnych projektov a kvalitnú prácu, ktorú odvádzame.
+                </p>
             </div>
 
             <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
 
             <div class="text-center mt-10">
-                <button id="toggle-gallery-btn" class="bg-primary hover:bg-yellow-400 text-black font-semibold py-3 px-8 rounded-lg transition">
-                    Viac <i class="fas fa-chevron-down ml-2"></i>
+                <button id="toggle-gallery-btn"
+                    class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center mx-auto">
+                    Viac
+                    <i class="fas fa-chevron-down ml-2"></i>
                 </button>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-20 bg-gray-950">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="con_title">Kontaktujte nás</h2>
-                <div class="h-1 w-24 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-400" data-i18n="con_sub">Dohodnite si termín alebo sa opýtajte na možnosti pre vaše vozidlo.</p>
+    <section id="contact" class="py-20 bg-dark text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Kontaktujte nás</h2>
+                <div class="h-1 w-24 bg-accent mx-auto mb-8"></div>
+                <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-8 max-w-3xl mx-auto">
+                    Kontaktujte nás a dohodnite si stretnutie alebo sa opýtajte na čokoľvek o našich službách.
+                </p>
             </div>
 
-            <div class="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-2xl p-8 md:p-12">
-                <div class="grid md:grid-cols-2 gap-10">
-                    <div class="space-y-8">
-                        <div class="flex gap-4">
-                            <div class="text-primary text-2xl"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="max-w-5xl mx-auto">
+                <div
+                    class="bg-gray-800/80 backdrop-blur-sm p-10 md:p-12 rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 border border-gray-700">
+                    <div class="text-center md:text-left space-y-10 flex flex-col justify-center">
+                        <div class="flex items-start justify-center md:justify-start gap-6">
+                            <div class="text-accent text-3xl mt-1 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1" data-i18n="lbl_addr">Adresa</h4>
-                                <p class="text-gray-400">Pšeničná 12027/7A<br>821 06 Bratislava</p>
+                                <h4 class="font-bold text-2xl mb-3">Adresa</h4>
+                                <p class="text-base leading-relaxed text-gray-300">
+                                    Pšeničná 12027/7A<br>
+                                    821 06 Bratislava
+                                </p>
                             </div>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="text-primary text-2xl"><i class="fas fa-clock"></i></div>
+
+                        <div class="flex items-start justify-center md:justify-start gap-6">
+                            <div class="text-accent text-3xl mt-1 flex-shrink-0">
+                                <i class="fas fa-clock"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1" data-i18n="lbl_hours">Otváracie hodiny</h4>
-                                <p class="text-gray-400">Po – Pia: 08:00 – 16:00<br>So: 08:00 – 14:00<br>Ne: Zatvorené</p>
+                                <h4 class="font-bold text-2xl mb-3">Otváracie hodiny</h4>
+                                <p class="text-base leading-relaxed text-gray-300">
+                                    Pon - Pia: 08:00 - 16:00<br>
+                                    Sobota: 08:00 - 14:00<br>
+                                    Nedeľa: Zatvorené
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="space-y-8">
-                        <div class="flex gap-4">
-                            <div class="text-primary text-2xl"><i class="fas fa-phone-alt"></i></div>
+
+                    <div class="text-center md:text-left space-y-10 flex flex-col justify-center">
+                        <div class="flex items-start justify-center md:justify-start gap-6">
+                            <div class="text-accent text-3xl mt-1 flex-shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1" data-i18n="lbl_phone">Telefón</h4>
-                                <a href="tel:+421910870807" class="text-gray-400 hover:text-primary transition">+421 910 870 807</a>
+                                <h4 class="font-bold text-2xl mb-3">Zavolajte nám</h4>
+                                <a href="tel:+421910870807" class="text-base hover:text-accent transition font-medium">
+                                    +421 910 870 807
+                                </a>
                             </div>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="text-primary text-2xl"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h4 class="font-bold text-white text-lg mb-1" data-i18n="lbl_email">Email</h4>
-                                <a href="mailto:gtifabsro@gmail.com" class="text-gray-400 hover:text-primary transition">gtifabsro@gmail.com</a>
+
+                        <div class="flex items-start justify-center md:justify-start gap-6">
+                            <div class="text-accent text-3xl mt-1 flex-shrink-0">
+                                <i class="fas fa-building"></i> <!-- alebo fa-id-card, fa-file-invoice, fa-briefcase -->
                             </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="text-primary text-2xl"><i class="fas fa-id-card"></i></div>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1">IČO / DIČ</h4>
-                                <p class="text-gray-400 text-sm">
-                                    IČO: 55900712<br>
-                                    DIČ: 2122121870<br>
-                                    IČ DPH: SK2122121870
+                                <h4 class="font-bold text-2xl mb-3">IČO / DIČ</h4>
+                                <p class="text-base leading-relaxed text-gray-300 space-y-1">
+                                    <span class="block"><strong>IČO:</strong> 55900712</span>
+                                    <span class="block"><strong>DIČ:</strong> 2122121870</span>
+                                    <span class="block"><strong>IČ DPH:</strong> SK2122121870</span>
                                 </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start justify-center md:justify-start gap-6">
+                            <div class="text-accent text-3xl mt-1 flex-shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-2xl mb-3">Email</h4>
+                                <a href="mailto:gtifabsro@gmail.com"
+                                    class="text-base hover:text-accent transition font-medium break-all md:break-normal">
+                                    gtifabsro@gmail.com
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -694,183 +515,144 @@
     </section>
 
     <!-- Map -->
-    <div class="h-[450px] w-full">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17612.897000211604!2d17.19062!3d48.174977!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8f63a1fe2a77%3A0x87b1bb7f0c8597d8!2sgtifab%20s.r.o.!5e1!3m2!1ssk!2ssk!4v1749906591564!5m2!1ssk!2ssk"
+    <div class="h-[500px] w-full">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17612.897000211604!2d17.19062!3d48.174977!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8f63a1fe2a77%3A0x87b1bb7f0c8597d8!2sgtifab%20s.r.o.!5e1!3m2!1ssk!2ssk!4v1749906591564!5m2!1ssk!2ssk"
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-950 border-t border-gray-800 py-10">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4 text-center">
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                 <div class="flex items-center space-x-3">
-                    <img src="logo.png" alt="Logo" class="h-9">
-                    <span class="text-xl font-bold text-white">gtifab <span class="text-primary">s.r.o.</span></span>
+                    <img src="logo.png" alt="Logo" class="h-10">
+                    <span class="text-2xl font-bold">gtifab <span class="text-accent">s.r.o.</span></span>
                 </div>
-                <p class="text-gray-500">© 2026 gtifab s.r.o. – Všetky práva vyhradené.</p>
+                <p class="text-gray-400">© 2026 gtifab s.r.o. – Všetky práva vyhradené.</p>
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/421910870807"
-        class="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20b358] text-white p-[14px] rounded-full shadow-2xl transition-transform hover:scale-110 z-50 flex items-center justify-center"
-        title="WhatsApp">
-        <svg viewBox="0 0 448 512" class="w-7 h-7 fill-current">
-            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224-99.6 224-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-189.2 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
+    <a href="https://wa.me/381628388856"
+        class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-110 z-50 flex items-center justify-center"
+        title="Kontaktirajte nas putem WhatsApp">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[1000] hidden items-center justify-center">
-        <span class="absolute top-6 right-8 text-white text-5xl cursor-pointer hover:scale-110 transition" id="lightbox-close">×</span>
-        <img id="lightbox-img" src="" alt="" class="max-w-[95vw] max-h-[90vh] object-contain">
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">×</span>
+        <img id="lightbox-img" src="" alt="Povećana slika">
     </div>
 
-    <script src="vehicles.js"></script>
+    <!-- Modali -->
+    <div id="modal-0" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 close-modal">×</button>
+            <h2 class="text-2xl font-bold mb-4">Autoservis</h2>
+            <p class="text-gray-700 mb-4">►Výmena oleja v motore, automatickej prevodovke, diferenciali,
+                rozvodovke<br>►Výmena brzdových platničiek aj s elektronickou brzdou<br>►Výmena brzdových
+                kotúčov<br>►Výmena brzdovej kvapaliny<br>►Kontrola vozidla / naprav/ unik oleja/ unik chladiacej
+                kvapaliny<br>►Čistenie DPF/FAP filtra<br>►Demontáž/Montáž DPF/FAP filtra<br>►Výmena vodného
+                čerpadla/termostatu<br>►Výmena rozvodov<br>►Výmena žhavičov/sviečok<br>►Výmena vstrekovačov<br>►Kontrola
+                vstrekovačov<br>►Výmena výfukov<br>►Demontáž/Montáž/Výmena štartéra/ alternátora<br>►Prezutie/vyváženie
+                kolies</p>
+        </div>
+    </div>
+
+    <div id="modal-1" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 close-modal">×</button>
+            <h2 class="text-2xl font-bold mb-4">Elektroservis</h2>
+            <p class="text-gray-700 mb-4">►Kalibrácia podvozku AIRMATIC/Vzduchový podvozok<br>►Výmena kompresora
+                AIRMATiC<br>►Adaptácia škrtiacej klapky<br>►Adaptácia EGR/AGR, DPF/FAP. Snímač tlaku
+                DPF/FAP<br>►Adaptácia Automatickej prevodovky<br>►Adaptácia snímača natočenia uhla
+                volantu<br>►Regenerácia DPF/FAP filtra<br>►Výmena NOx senzora<br>►Reset servisného intervalu<br>►Test
+                akumulátora a batérií/protokol</p>
+        </div>
+    </div>
+
+    <div id="modal-2" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 close-modal">×</button>
+            <h2 class="text-2xl font-bold mb-4">Chiptuning - Úprava RJ</h2>
+            <p class="text-gray-700 mb-4">
+                ►ADBLUE <span style="color: red;">off</span><br>
+                ►DPF <span style="color: red;">off</span><br>
+                ►EGR / AGR <span style="color: red;">off</span><br>
+                ►IMMO <span style="color: red;">off</span><br>
+                ►TVA <span style="color: red;">off</span> / Škrtiaca klapka<br>
+                ►KATALYZÁTOR <span style="color: red;">off</span><br>
+                ►START/STOP <span style="color: red;">off</span><br>
+                ►LAMBDA SONDA <span style="color: red;">off</span><br>
+                ►DTC kódy <span style="color: red;">off</span><br>
+                ►MAF <span style="color: red;">off</span> / Prietokomer vzduchu<br>
+                ►LAUNCH CONTROL<br>
+                ►VIRIVÉ KLAPKY <span style="color: red;">off</span><br>
+                ►SPEED LIMIT / OBMEDZOVAČ RÝCHLOSTI<br>
+                ►POP BANG<br>
+                ►HOT START / HORÚCE ŠTARTY<br>
+                ►CHIPTUNING Auto STAGE 1,2,3,4<br>
+                ►VYPNUTIE PÁSOV<br>
+                ►NAHRANIE ORIGINÁLNEHO SOFTVÉRU<br>
+                ►Reprogramácia jednotiek<br>
+                ►Klonovanie jednotiek<br>
+                ►On-line kódovanie<br>
+                ►On-line programovanie
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-3" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 close-modal">×</button>
+            <h2 class="text-2xl font-bold mb-4">Kódovanie</h2>
+            <p class="text-gray-700 mb-4">
+                ►Odblokovanie videa počas jazdy<br>
+                ►Deaktivácia štart-stop systému<br>
+                ►Pretočenie ručičiek pri zapínaní (Needle Swap)<br>
+                ►Aktivácia zadného denného svietenia (DRL)<br>
+                ►Vypnutie upozornenia na bezpečnostné pásy<br>
+                ►CarPlay aktivácia<br>
+                ►Zapnutie denného svietenia<br>
+                ►Zamknutie naštartovaného vozidla<br>
+                ►AMG menu<br>
+                ►Podsvietenie interiéru / nahratie viacerých farieb<br>
+                ►LAP Timer<br>
+                ►Úprava teploty vyhrievaných sedadiel<br>
+                ►Vypnutie zadného stierača pri zaradení prevodového stupňa "R"<br>
+                ►Zapnutie predných hmloviek pri zaradení prevodového stupňa "R"<br>
+                ►Zapnutie maximálneho osvetlenia pri zaradení stupňa "R"<br>
+                ►A iné
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-4" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 close-modal">×</button>
+            <h2 class="text-2xl font-bold mb-4">Odťahová služba</h2>
+            <p class="text-gray-700 mb-4">
+                ►Trojnapravový vozík celoplošný 5,2m, elektrický navijak na 5,5t<br>
+                ►Čistá váha nákladu 2,6 T
+            </p>
+        </div>
+    </div>
+
+    <div id="modal-5" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button class="absolute top-2 right-3 text-gray-500 hover:text-red-500 close-modal">×</button>
+            <h2 class="text-2xl font-bold mb-4">Zabezpečenie STK/EK</h2>
+            <p class="text-gray-700 mb-4">
+                ►Kontrola a doplnenie chladiacich kvapalín<br>
+                ►Prípadné poruchy - oprava vozidla
+            </p>
+        </div>
+    </div>
+
     <script>
-        // Baza vozidiel je v vehicles.js (6561 motora)
-
-        // ========== SELECTOR LOGIC ==========
-        const makeSelect = document.getElementById('make');
-        const modelSelect = document.getElementById('model');
-        const engineSelect = document.getElementById('engine');
-        const searchBtn = document.getElementById('searchBtn');
-        const resultBox = document.getElementById('resultBox');
-
-        // Popuni značke
-        Object.keys(vehicleData).forEach(make => {
-            const opt = document.createElement('option');
-            opt.value = make;
-            opt.textContent = make;
-            makeSelect.appendChild(opt);
-        });
-
-        makeSelect.addEventListener('change', () => {
-            modelSelect.innerHTML = '<option value="">Vyberte model</option>';
-            engineSelect.innerHTML = '<option value="">Najprv model</option>';
-            engineSelect.disabled = true;
-            searchBtn.disabled = true;
-            resultBox.classList.add('hidden');
-
-            if (makeSelect.value) {
-                modelSelect.disabled = false;
-                Object.keys(vehicleData[makeSelect.value]).forEach(model => {
-                    const opt = document.createElement('option');
-                    opt.value = model;
-                    opt.textContent = model;
-                    modelSelect.appendChild(opt);
-                });
-            } else {
-                modelSelect.disabled = true;
-            }
-        });
-
-        modelSelect.addEventListener('change', () => {
-            engineSelect.innerHTML = '<option value="">Vyberte motor</option>';
-            searchBtn.disabled = true;
-            resultBox.classList.add('hidden');
-
-            if (modelSelect.value) {
-                engineSelect.disabled = false;
-                const engines = vehicleData[makeSelect.value][modelSelect.value];
-                Object.keys(engines).forEach(eng => {
-                    const opt = document.createElement('option');
-                    opt.value = eng;
-                    opt.textContent = eng;
-                    engineSelect.appendChild(opt);
-                });
-            } else {
-                engineSelect.disabled = true;
-            }
-        });
-
-        engineSelect.addEventListener('change', () => {
-            searchBtn.disabled = !engineSelect.value;
-            resultBox.classList.add('hidden');
-        });
-
-        function showResult(make, model, engine) {
-            const data = vehicleData[make][model][engine];
-            document.getElementById('resultTitle').textContent = `${make} ${model}`;
-            document.getElementById('resultEngine').textContent = engine;
-            const oh=data.origHP, th=data.tunedHP, on=data.origNM, tn=data.tunedNM;
-            document.getElementById('origHP').textContent = oh ?? '—';
-            document.getElementById('origNM').textContent = on ?? '—';
-            document.getElementById('tunedHP').textContent = th ?? '—';
-            document.getElementById('tunedNM').textContent = tn ?? '—';
-            document.getElementById('diffHP').textContent = (oh!=null && th!=null) ? (th-oh) : '—';
-            document.getElementById('diffNM').textContent = (on!=null && tn!=null) ? (tn-on) : '—';
-            const maxHP=Math.max(oh||0, th||0, 1);
-            const maxNM=Math.max(on||0, tn||0, 1);
-            document.getElementById('barOrigHP').style.height = Math.max(8, (oh||0)/maxHP*100) + '%';
-            document.getElementById('barTunedHP').style.height = Math.max(8, (th||0)/maxHP*100) + '%';
-            document.getElementById('barOrigNM').style.height = Math.max(8, (on||0)/maxNM*100) + '%';
-            document.getElementById('barTunedNM').style.height = Math.max(8, (tn||0)/maxNM*100) + '%';
-            resultBox.classList.remove('hidden');
-            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        searchBtn.addEventListener('click', () => {
-            showResult(makeSelect.value, modelSelect.value, engineSelect.value);
-        });
-
-        // Quick search
-        const quickSearch = document.getElementById('quickSearch');
-        const searchResults = document.getElementById('searchResults');
-        let searchIndex = [];
-        Object.keys(vehicleData).forEach(make => {
-            Object.keys(vehicleData[make]).forEach(model => {
-                Object.keys(vehicleData[make][model]).forEach(engine => {
-                    searchIndex.push({
-                        make, model, engine,
-                        text: `${make} ${model} ${engine}`.toLowerCase()
-                    });
-                });
-            });
-        });
-
-        quickSearch.addEventListener('input', () => {
-            const q = quickSearch.value.trim().toLowerCase();
-            searchResults.innerHTML = '';
-            if (q.length < 2) {
-                searchResults.classList.add('hidden');
-                return;
-            }
-            const hits = searchIndex.filter(x => q.split(/\s+/).every(p => x.text.includes(p))).slice(0, 30);
-            if (!hits.length) {
-                searchResults.classList.add('hidden');
-                return;
-            }
-            hits.forEach(h => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700';
-                btn.textContent = `${h.make} ${h.model} — ${h.engine}`;
-                btn.addEventListener('click', () => {
-                    makeSelect.value = h.make;
-                    makeSelect.dispatchEvent(new Event('change'));
-                    modelSelect.value = h.model;
-                    modelSelect.dispatchEvent(new Event('change'));
-                    engineSelect.value = h.engine;
-                    engineSelect.dispatchEvent(new Event('change'));
-                    showResult(h.make, h.model, h.engine);
-                    searchResults.classList.add('hidden');
-                    quickSearch.value = btn.textContent;
-                });
-                searchResults.appendChild(btn);
-            });
-            searchResults.classList.remove('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!searchResults.contains(e.target) && e.target !== quickSearch) {
-                searchResults.classList.add('hidden');
-            }
-        });
-
-        // ========== MOBILE MENU ==========
+        // Mobile menu + overlay
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileOverlay = document.getElementById('mobile-overlay');
@@ -879,8 +661,13 @@
             mobileMenu.classList.toggle('open');
             mobileOverlay.classList.toggle('show');
         }
+
         menuBtn.addEventListener('click', toggleMobileMenu);
-        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', toggleMobileMenu);
+        }
+
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
@@ -888,416 +675,162 @@
             });
         });
 
-        // ========== SMOOTH SCROLL ==========
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
 
-        // ========== GALLERY ==========
+        // Modal open
+        document.querySelectorAll('.open-modal').forEach(button => {
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                const id = button.getAttribute('data-modal');
+                document.getElementById(id)?.classList.remove('hidden');
+            });
+        });
+
+        // Modal close
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.fixed')?.classList.add('hidden');
+            });
+        });
+
+        document.querySelectorAll('.fixed.inset-0').forEach(modal => {
+            modal.addEventListener('click', e => {
+                if (e.target === modal) modal.classList.add('hidden');
+            });
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.fixed.inset-0:not(.hidden)').forEach(m => m.classList.add('hidden'));
+            }
+        });
+
+
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('show');
+            lightboxImg.classList.remove('visible');
+            setTimeout(() => {
+                lightboxImg.classList.add('visible');
+            }, 80);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightboxImg.classList.remove('visible');
+            setTimeout(() => {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = '';
+            }, 400);
+        }
+
+        lightboxClose?.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                closeLightbox();
+            }
+        });
+
+        // Galerija
         const galleryGrid = document.getElementById('gallery-grid');
         const toggleBtn = document.getElementById('toggle-gallery-btn');
+
         const allImages = [
             '8.webp', '19.webp', '22.webp', '17.webp', '18.webp', '5.webp',
             '9.webp', '10.webp', '11.webp', '12.webp', '13.webp', '14.webp',
             '15.webp', '16.webp', '4.webp', '6.webp', '2.webp', '20.webp',
             '23.webp', '24.webp', '25.webp', '26.webp', '27.webp', '28.webp',
-            '29.webp', '30.webp'
+            '29.webp', '30.webp',
         ];
+
+        const initialCount = 6;
         let isExpanded = false;
 
         function renderGallery(showAll = false) {
             galleryGrid.innerHTML = '';
-            const count = showAll ? allImages.length : 6;
+
+            const count = showAll ? allImages.length : initialCount;
+
             for (let i = 0; i < count; i++) {
                 const div = document.createElement('div');
-                div.className = 'overflow-hidden rounded-lg cursor-pointer';
+                div.className = 'overflow-hidden rounded-lg shadow-md cursor-zoom-in';
+
                 const img = document.createElement('img');
                 img.src = allImages[i];
-                img.alt = `Galéria ${i + 1}`;
+                img.alt = `Galerija ${i + 1}`;
                 img.loading = 'lazy';
-                img.className = 'w-full h-64 object-cover hover:scale-105 transition duration-500';
+                img.className = 'w-full h-64 object-cover hover:scale-110 transition duration-500';
+
                 img.addEventListener('click', () => openLightbox(img.src));
+
                 div.appendChild(img);
                 galleryGrid.appendChild(div);
             }
+
             toggleBtn.innerHTML = showAll
                 ? 'Menej <i class="fas fa-chevron-up ml-2"></i>'
                 : 'Viac <i class="fas fa-chevron-down ml-2"></i>';
         }
+
         renderGallery(false);
+
         toggleBtn.addEventListener('click', () => {
             isExpanded = !isExpanded;
             renderGallery(isExpanded);
         });
 
-        // ========== LIGHTBOX ==========
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-        document.getElementById('lightbox-close').addEventListener('click', () => {
-            lightbox.classList.add('hidden');
-            lightbox.classList.remove('flex');
-            document.body.style.overflow = '';
-        });
-        lightbox.addEventListener('click', e => {
-            if (e.target === lightbox) {
-                lightbox.classList.add('hidden');
-                lightbox.classList.remove('flex');
-                document.body.style.overflow = '';
-            }
-        });
+        // Typewriter
+        const text = "Váš komplexný partner pre starostlivosť o Vaše vozidlo!";
+        let i = 0;
 
-        // ========== TYPEWRITER ==========
-        // typewriter handled by applyLang()
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 70);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            typeWriter();
+        });
 
         setInterval(() => {
             const cursor = document.getElementById("cursor");
             if (cursor) cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
         }, 500);
-
-        // ECU news slider
-        const newsSlides = document.getElementById('newsSlides');
-        let newsIndex = 0;
-        const newsCount = newsSlides ? newsSlides.children.length : 0;
-        function showNews(i) {
-            if (!newsSlides) return;
-            newsIndex = (i + newsCount) % newsCount;
-            newsSlides.style.transform = `translateX(-${newsIndex * 100}%)`;
-        }
-        document.getElementById('newsPrev')?.addEventListener('click', () => showNews(newsIndex - 1));
-        document.getElementById('newsNext')?.addEventListener('click', () => showNews(newsIndex + 1));
-        setInterval(() => showNews(newsIndex + 1), 7000);
-
-        // i18n
-        const i18n = {
-            sk: {
-                nav_home:'Domov', nav_chip:'Chiptuning', nav_news:'Novinky ECU', nav_price:'Cenník', nav_code:'Kódovanie', nav_reviews:'Recenzie', nav_contact:'Kontakt',
-                hero_kicker:'GTIFAB • BRATISLAVA',
-                hero_title:'Chiptuning & Kódovanie na najvyššej úrovni',
-                hero_sub:'Profesionálny chiptuning a kódovanie vozidiel. Viac výkonu, lepšia odozva, individuálne nastavenie.',
-                hero_warranty:'2 roky záruka na software a RJ • návrat na originál zdarma kedykoľvek',
-                btn_check:'Overiť výkon auta', btn_call:'Volať', btn_power:'Zobraziť výkon', btn_order:'Objednať úpravu', btn_options:'Zistiť možnosti pre tvoje auto',
-                feat1:'Bezpečné zvýšenie výkonu a krútiaceho momentu s ohľadom na spoľahlivosť.',
-                feat2:'Vypnutie systémov, riešenie problémov a optimalizácia softvéru.',
-                feat3t:'Kódovanie', feat3:'VW, Audi, BMW, Mercedes, Škoda, SEAT a ďalšie značky.',
-                chip_sub:'Vyberte si značku, model a motor a okamžite uvidíte originálny výkon a Stage 1 potenciál.',
-                lbl_search:'Rýchle hľadanie', ph_search:'napr. Golf 2.0 TDI 150...',
-                lbl_make:'Značka', lbl_model:'Model', lbl_engine:'Motor',
-                opt_make:'Vyberte značku', opt_model:'Najprv značku', opt_engine:'Najprv model',
-                lbl_orig:'Originál', do_title:'Čo všetko robíme', veh_title:'Pre aké vozidlá',
-                tech_title:'Moderné technológie', tech_sub:'Pracujeme s profesionálnymi zariadeniami svetových výrobcov.',
-                news_title:'Novinky riadiacich jednotiek', news_sub:'Nové ECU / TCU podľa pridania od výrobcov.',
-                price_title:'Cenník', price_sub:'Ceny sú orientačné. Presnú cenu potvrdíme podľa vozidla a ECU.',
-                price_code:'Kódovanie', price_keys:'Programovanie kľúčov', price_orig:'Návrat na originál', price_orig_sub:'Kedykoľvek zdarma, originálny software archivujeme.',
-                keys_title:'Programovanie kľúčov', keys_sub:'Strata kľúča, nový kľúč, immo, spárovanie po výmene RJ.',
-                rev_title:'Recenzie', rev_sub:'Recenzie zákazníkov.',
-                rev_form_title:'Napísať recenziu', rev_form_sub:'Recenzia nejde hneď na web. Najprv nám príde na kontrolu.',
-                rev_name:'Meno', rev_contact:'Telefón alebo email', rev_car:'Auto / služba', rev_rate:'Hodnotenie', rev_text:'Text',
-                about_title:'O nás', about_text:'Špecializujeme sa na softvérové úpravy riadiacich jednotiek a kódovanie vozidiel. Používame profesionálne nástroje a máme dlhoročné skúsenosti s širokým spektrom značiek.',
-                stat_years:'Rokov skúseností', stat_cars:'Upravených vozidiel', stat_ok:'Záruka spokojnosti',
-                gal_title:'Galéria našej práce', con_title:'Kontaktujte nás', con_sub:'Dohodnite si termín alebo sa opýtajte na možnosti pre vaše vozidlo.',
-                lbl_addr:'Adresa', lbl_hours:'Otváracie hodiny', lbl_phone:'Telefón', lbl_email:'Email',
-                code_title:'Kódovanie', code_sub:'Online a offline kódovanie pre Volkswagen, Audi, BMW, Mercedes, Škoda, SEAT/CUPRA a ďalšie.',
-                v1:'► Osobné automobily', v2:'► Dodávky', v3:'► Nákladné vozidlá', v4:'► Motocykle', v5:'► Autobusy', v6:'► Traktory a stavebné stroje', v7:'► Lode',
-                d9:'► Immo off / klonovanie jednotiek', d10:'► Nahranie originálneho softvéru', at_sub:'Slave / Master programovanie',
-                n1t:'Nová podpora BMW MDG1', n1p:'Čítanie a zápis novších BMW jednotiek.', n2t:'VW / Audi MG1 a MD1', n2p:'Aktualizované postupy pre novšie motory koncernu VAG.', n3t:'Mercedes novšie ECU', n3p:'Pridajte konkrétny model podľa posledného projektu.',
-                p1:'Úprava výkonu a krútiaceho momentu. Záruka 2 roky.', p2:'Pokročilejšia úprava podľa hardvéru vozidla.', p3:'Softvérové riešenia problémov so systémami.', p4:'Comfort, svetlá, CarPlay, Start/Stop a ďalšie.', p5:'Nový kľúč, immo, spárovanie s vozidlom.',
-                k2:'► Programovanie a adaptácia', k3:'► Záloha pôvodného stavu',
-                c1t:'Komfort & Multimédia', c2t:'Svetlá & Asistenty', c3t:'Ďalšie funkcie',
-                c1a:'• Video počas jazdy', c1b:'• CarPlay / Android Auto aktivácia', c1c:'• Needle sweep (ručičky)', c1d:'• Ambientné osvetlenie – viac farieb', c1e:'• AMG menu / Sport menu',
-                c2a:'• Denné svietenie (DRL)', c2b:'• Zadné DRL', c2c:'• Hmlovky pri cúvaní', c2d:'• Vypnutie upozornenia na pásy', c2e:'• Start/Stop deaktivácia',
-                c3a:'• Lap Timer', c3b:'• Zamknutie naštartovaného auta', c3c:'• Úprava teploty vyhrievaných sedadiel', c3d:'• Vypnutie zadného stierača na R', c3e:'• A mnoho ďalších...'
-
-            },
-            en: {
-                nav_home:'Home', nav_chip:'Chiptuning', nav_news:'ECU news', nav_price:'Prices', nav_code:'Coding', nav_reviews:'Reviews', nav_contact:'Contact',
-                hero_kicker:'GTIFAB • BRATISLAVA', hero_title:'Chiptuning & coding at a professional level',
-                hero_sub:'Professional chiptuning and vehicle coding. More power, better response, custom setup.',
-                hero_warranty:'2-year warranty on software and ECU • free return to stock anytime',
-                btn_check:'Check your car', btn_call:'Call', btn_power:'Show power', btn_order:'Book a tune', btn_options:'See options for your car',
-                feat1:'Safe power and torque increase with reliability in mind.',
-                feat2:'System solutions, troubleshooting and software optimization.',
-                feat3t:'Coding', feat3:'VW, Audi, BMW, Mercedes, Skoda, SEAT and more.',
-                chip_sub:'Choose make, model and engine to see stock and Stage 1 power.',
-                lbl_search:'Quick search', ph_search:'e.g. Golf 2.0 TDI 150...',
-                lbl_make:'Make', lbl_model:'Model', lbl_engine:'Engine',
-                opt_make:'Choose make', opt_model:'Choose make first', opt_engine:'Choose model first',
-                lbl_orig:'Stock', do_title:'What we do', veh_title:'Vehicles we cover',
-                tech_title:'Modern tools', tech_sub:'We use professional tools from leading manufacturers.',
-                news_title:'ECU news', news_sub:'New ECU / TCU support as added by manufacturers.',
-                price_title:'Price list', price_sub:'Prices are indicative. Final price depends on the car and ECU.',
-                price_code:'Coding', price_keys:'Key programming', price_orig:'Return to stock', price_orig_sub:'Free anytime. We archive original software.',
-                keys_title:'Key programming', keys_sub:'Lost key, new key, immo, pairing after ECU replacement.',
-                rev_title:'Reviews', rev_sub:'Customer reviews.',
-                rev_form_title:'Write a review', rev_form_sub:'The review is not published immediately. We check it first.',
-                rev_name:'Name', rev_contact:'Phone or email', rev_car:'Car / service', rev_rate:'Rating', rev_text:'Text',
-                about_title:'About us', about_text:'We specialize in ECU software and vehicle coding. We use professional tools and have many years of experience across brands.',
-                stat_years:'Years of experience', stat_cars:'Vehicles tuned', stat_ok:'Satisfaction focus',
-                gal_title:'Gallery', con_title:'Contact us', con_sub:'Book a date or ask about options for your vehicle.',
-                lbl_addr:'Address', lbl_hours:'Opening hours', lbl_phone:'Phone', lbl_email:'Email',
-                code_title:'Coding', code_sub:'Online and offline coding for Volkswagen, Audi, BMW, Mercedes, Skoda, SEAT/CUPRA and more.',
-                v1:'► Passenger cars', v2:'► Vans', v3:'► Trucks', v4:'► Motorcycles', v5:'► Buses', v6:'► Tractors and construction machines', v7:'► Boats',
-                d9:'► Immo off / ECU cloning', d10:'► Restore original software', at_sub:'Slave / Master programming',
-                n1t:'New BMW MDG1 support', n1p:'Read and write on newer BMW control units.', n2t:'VW / Audi MG1 and MD1', n2p:'Updated procedures for newer VAG engines.', n3t:'Newer Mercedes ECUs', n3p:'Add the latest completed model.',
-                p1:'Power and torque remap. 2-year warranty.', p2:'Advanced remap depending on hardware.', p3:'Software solutions for system issues.', p4:'Comfort, lights, CarPlay, Start/Stop and more.', p5:'New key, immo, pairing with the vehicle.',
-                k2:'► Programming and adaptation', k3:'► Backup of original state',
-                c1t:'Comfort & multimedia', c2t:'Lights & assists', c3t:'Other functions',
-                c1a:'• Video in motion', c1b:'• CarPlay / Android Auto activation', c1c:'• Needle sweep', c1d:'• Ambient lighting – more colors', c1e:'• AMG / Sport menu',
-                c2a:'• Daytime running lights (DRL)', c2b:'• Rear DRL', c2c:'• Fog lights when reversing', c2d:'• Seatbelt warning off', c2e:'• Start/Stop deactivation',
-                c3a:'• Lap Timer', c3b:'• Lock car while running', c3c:'• Heated seat temperature tweak', c3d:'• Rear wiper off in R', c3e:'• And many more...'
-
-            },
-            de: {
-                nav_home:'Start', nav_chip:'Chiptuning', nav_news:'ECU-News', nav_price:'Preise', nav_code:'Kodierung', nav_reviews:'Bewertungen', nav_contact:'Kontakt',
-                hero_kicker:'GTIFAB • BRATISLAVA', hero_title:'Chiptuning & Kodierung auf hohem Niveau',
-                hero_sub:'Professionelles Chiptuning und Fahrzeugkodierung. Mehr Leistung, besseres Ansprechverhalten.',
-                hero_warranty:'2 Jahre Garantie auf Software und Steuergerät • Serienstand jederzeit kostenlos',
-                btn_check:'Fahrzeug prüfen', btn_call:'Anrufen', btn_power:'Leistung zeigen', btn_order:'Termin buchen', btn_options:'Optionen für Ihr Auto',
-                feat1:'Sichere Leistungs- und Drehmomentsteigerung mit Blick auf Zuverlässigkeit.',
-                feat2:'Systemlösungen, Fehlerbehebung und Software-Optimierung.',
-                feat3t:'Kodierung', feat3:'VW, Audi, BMW, Mercedes, Skoda, SEAT und weitere Marken.',
-                chip_sub:'Marke, Modell und Motor wählen – Serienleistung und Stage 1 sofort sichtbar.',
-                lbl_search:'Schnellsuche', ph_search:'z. B. Golf 2.0 TDI 150...',
-                lbl_make:'Marke', lbl_model:'Modell', lbl_engine:'Motor',
-                opt_make:'Marke wählen', opt_model:'Zuerst Marke', opt_engine:'Zuerst Modell',
-                lbl_orig:'Serie', do_title:'Was wir machen', veh_title:'Für welche Fahrzeuge',
-                tech_title:'Moderne Technik', tech_sub:'Wir arbeiten mit Profi-Geräten führender Hersteller.',
-                news_title:'Steuergeräte-News', news_sub:'Neue ECU/TCU je nach Freigabe der Hersteller.',
-                price_title:'Preisliste', price_sub:'Preise sind Richtwerte. Der Endpreis hängt vom Fahrzeug und Steuergerät ab.',
-                price_code:'Kodierung', price_keys:'Schlüsselprogrammierung', price_orig:'Zurück auf Serie', price_orig_sub:'Jederzeit kostenlos. Originalsoftware wird archiviert.',
-                keys_title:'Schlüsselprogrammierung', keys_sub:'Schlüsselverlust, neuer Schlüssel, Immo, Anlernen nach Steuergerät-Tausch.',
-                rev_title:'Bewertungen', rev_sub:'Kundenstimmen.',
-                rev_form_title:'Bewertung schreiben', rev_form_sub:'Die Bewertung geht nicht sofort online. Zuerst Prüfung.',
-                rev_name:'Name', rev_contact:'Telefon oder E-Mail', rev_car:'Auto / Service', rev_rate:'Bewertung', rev_text:'Text',
-                about_title:'Über uns', about_text:'Wir spezialisieren uns auf Steuergeräte-Software und Fahrzeugkodierung. Professionelle Tools und langjährige Erfahrung.',
-                stat_years:'Jahre Erfahrung', stat_cars:'Bearbeitete Fahrzeuge', stat_ok:'Zufriedenheit',
-                gal_title:'Galerie', con_title:'Kontakt', con_sub:'Termin vereinbaren oder nach Optionen für Ihr Fahrzeug fragen.',
-                lbl_addr:'Adresse', lbl_hours:'Öffnungszeiten', lbl_phone:'Telefon', lbl_email:'E-Mail',
-                code_title:'Kodierung', code_sub:'Online- und Offline-Kodierung für Volkswagen, Audi, BMW, Mercedes, Skoda, SEAT/CUPRA und mehr.',
-                v1:'► Pkw', v2:'► Transporter', v3:'► Lkw', v4:'► Motorräder', v5:'► Busse', v6:'► Traktoren und Baumaschinen', v7:'► Boote',
-                d9:'► Immo off / Steuergerät klonen', d10:'► Originalsoftware zurückspielen', at_sub:'Slave / Master Programmierung',
-                n1t:'Neue BMW MDG1 Unterstützung', n1p:'Lesen und Schreiben neuerer BMW Steuergeräte.', n2t:'VW / Audi MG1 und MD1', n2p:'Aktualisierte Abläufe für neuere VAG-Motoren.', n3t:'Neuere Mercedes Steuergeräte', n3p:'Tragen Sie das zuletzt bearbeitete Modell ein.',
-                p1:'Leistungs- und Drehmomentoptimierung. 2 Jahre Garantie.', p2:'Erweiterte Optimierung je nach Hardware.', p3:'Softwarelösungen bei Systemproblemen.', p4:'Komfort, Licht, CarPlay, Start/Stop und mehr.', p5:'Neuer Schlüssel, Immo, Anlernen am Fahrzeug.',
-                k2:'► Programmierung und Adaption', k3:'► Sicherung des Originalzustands',
-                c1t:'Komfort & Multimedia', c2t:'Licht & Assistenten', c3t:'Weitere Funktionen',
-                c1a:'• Video während der Fahrt', c1b:'• CarPlay / Android Auto Aktivierung', c1c:'• Needle Sweep', c1d:'• Ambientebeleuchtung – mehr Farben', c1e:'• AMG / Sport Menü',
-                c2a:'• Tagfahrlicht (DRL)', c2b:'• Heck-DRL', c2c:'• Nebelscheinwerfer beim Rückwärtsfahren', c2d:'• Gurtwarner aus', c2e:'• Start/Stop deaktivieren',
-                c3a:'• Lap Timer', c3b:'• Verriegeln bei laufendem Motor', c3c:'• Temperatur der Sitzheizung', c3d:'• Heckscheibenwischer in R aus', c3e:'• Und vieles mehr...'
-
-            },
-            uk: {
-                nav_home:'Головна', nav_chip:'Чіптюнінг', nav_news:'Новини ECU', nav_price:'Ціни', nav_code:'Кодування', nav_reviews:'Відгуки', nav_contact:'Контакт',
-                hero_kicker:'GTIFAB • BRATISLAVA', hero_title:'Чіптюнінг і кодування професійного рівня',
-                hero_sub:'Професійний чіптюнінг і кодування авто. Більше потужності та краща реакція.',
-                hero_warranty:'2 роки гарантії на ПЗ і блок • повернення стоку безкоштовно будь-коли',
-                btn_check:'Перевірити авто', btn_call:'Подзвонити', btn_power:'Показати потужність', btn_order:'Замовити', btn_options:'Варіанти для вашого авто',
-                feat1:'Безпечне збільшення потужності та моменту з урахуванням надійності.',
-                feat2:'Вимкнення систем, вирішення проблем і оптимізація ПЗ.',
-                feat3t:'Кодування', feat3:'VW, Audi, BMW, Mercedes, Skoda, SEAT та інші.',
-                chip_sub:'Оберіть марку, модель і мотор — побачите сток і Stage 1.',
-                lbl_search:'Швидкий пошук', ph_search:'напр. Golf 2.0 TDI 150...',
-                lbl_make:'Марка', lbl_model:'Модель', lbl_engine:'Мотор',
-                opt_make:'Оберіть марку', opt_model:'Спочатку марку', opt_engine:'Спочатку модель',
-                lbl_orig:'Сток', do_title:'Що робимо', veh_title:'Для яких авто',
-                tech_title:'Сучасні технології', tech_sub:'Працюємо з професійним обладнанням світових виробників.',
-                news_title:'Новини блоків керування', news_sub:'Нові ECU / TCU за оновленнями виробників.',
-                price_title:'Прайс', price_sub:'Ціни орієнтовні. Точну вартість підтвердимо після авто і ECU.',
-                price_code:'Кодування', price_keys:'Програмування ключів', price_orig:'Повернення стоку', price_orig_sub:'Безкоштовно будь-коли. Оригінал зберігаємо.',
-                keys_title:'Програмування ключів', keys_sub:'Втрата ключа, новий ключ, immo, прив’язка після заміни блоку.',
-                rev_title:'Відгуки', rev_sub:'Відгуки клієнтів.',
-                rev_form_title:'Написати відгук', rev_form_sub:'Відгук не з’являється одразу. Спочатку перевірка.',
-                rev_name:'Ім’я', rev_contact:'Телефон або email', rev_car:'Авто / послуга', rev_rate:'Оцінка', rev_text:'Текст',
-                about_title:'Про нас', about_text:'Спеціалізуємося на ПЗ блоків керування та кодуванні авто. Професійні інструменти і багаторічний досвід.',
-                stat_years:'Років досвіду', stat_cars:'Оброблених авто', stat_ok:'Орієнтир на результат',
-                gal_title:'Галерея', con_title:'Контакт', con_sub:'Запишіться або запитайте про можливості для вашого авто.',
-                lbl_addr:'Адреса', lbl_hours:'Години роботи', lbl_phone:'Телефон', lbl_email:'Email',
-                code_title:'Кодування', code_sub:'Онлайн і офлайн кодування Volkswagen, Audi, BMW, Mercedes, Skoda, SEAT/CUPRA та інших.',
-                v1:'► Легкові авто', v2:'► Буси', v3:'► Вантажівки', v4:'► Мотоцикли', v5:'► Автобуси', v6:'► Трактори та спецтехніка', v7:'► Човни',
-                d9:'► Immo off / клонування блоку', d10:'► Повернення оригінального ПЗ', at_sub:'Slave / Master програмування',
-                n1t:'Нова підтримка BMW MDG1', n1p:'Читання і запис новіших блоків BMW.', n2t:'VW / Audi MG1 і MD1', n2p:'Оновлені процедури для новіших моторів VAG.', n3t:'Новіші ECU Mercedes', n3p:'Додайте останню модель, яку зробили клієнту.',
-                p1:'Збільшення потужності і моменту. Гарантія 2 роки.', p2:'Розширена прошивка залежно від заліза.', p3:'Програмні рішення проблем систем.', p4:'Комфорт, світло, CarPlay, Start/Stop тощо.', p5:'Новий ключ, immo, прив’язка до авто.',
-                k2:'► Програмування і адаптація', k3:'► Резервна копія оригіналу',
-                c1t:'Комфорт і мультимедіа', c2t:'Світло і асистенти', c3t:'Інші функції',
-                c1a:'• Відео під час руху', c1b:'• Активація CarPlay / Android Auto', c1c:'• Needle sweep', c1d:'• Підсвітка салону – більше кольорів', c1e:'• Меню AMG / Sport',
-                c2a:'• Денні вогні (DRL)', c2b:'• Задні DRL', c2c:'• Протитуманки при задньому ході', c2d:'• Вимкнення нагадування про ремінь', c2e:'• Вимкнення Start/Stop',
-                c3a:'• Lap Timer', c3b:'• Закриття авто на заведеному двигуні', c3c:'• Температура підігріву сидінь', c3d:'• Вимкнення заднього двірника на R', c3e:'• І багато іншого...'
-
-            },
-            sr: {
-                nav_home:'Početna', nav_chip:'Chiptuning', nav_news:'ECU novosti', nav_price:'Cenovnik', nav_code:'Kodiranje', nav_reviews:'Recenzije', nav_contact:'Kontakt',
-                hero_kicker:'GTIFAB • BRATISLAVA', hero_title:'Chiptuning i kodiranje na visokom nivou',
-                hero_sub:'Profesionalni chiptuning i kodiranje vozila. Više snage, bolji odziv, individualno podešavanje.',
-                hero_warranty:'2 godine garancije na softver i RJ • povratak na original besplatno bilo kada',
-                btn_check:'Proveri auto', btn_call:'Pozovi', btn_power:'Prikaži snagu', btn_order:'Zakaži', btn_options:'Opcije za tvoj auto',
-                feat1:'Bezbedno povećanje snage i momenta uz pouzdanost.',
-                feat2:'Gašenje sistema, rešavanje problema i optimizacija softvera.',
-                feat3t:'Kodiranje', feat3:'VW, Audi, BMW, Mercedes, Škoda, SEAT i drugi brendovi.',
-                chip_sub:'Izaberi marku, model i motor i odmah vidi original i Stage 1.',
-                lbl_search:'Brza pretraga', ph_search:'npr. Golf 2.0 TDI 150...',
-                lbl_make:'Marka', lbl_model:'Model', lbl_engine:'Motor',
-                opt_make:'Izaberi marku', opt_model:'Prvo marku', opt_engine:'Prvo model',
-                lbl_orig:'Original', do_title:'Šta radimo', veh_title:'Za koja vozila',
-                tech_title:'Moderne tehnologije', tech_sub:'Radimo sa profesionalnom opremom svetskih proizvođača.',
-                news_title:'Novosti upravljačkih jedinica', news_sub:'Novi ECU / TCU prema dodacima proizvođača.',
-                price_title:'Cenovnik', price_sub:'Cene su orijentacione. Tačnu cenu potvrđujemo prema autu i ECU.',
-                price_code:'Kodiranje', price_keys:'Programiranje ključeva', price_orig:'Povratak na original', price_orig_sub:'Besplatno bilo kada. Originalni softver čuvamo.',
-                keys_title:'Programiranje ključeva', keys_sub:'Izgubljen ključ, novi ključ, immo, uparivanje posle zamene RJ.',
-                rev_title:'Recenzije', rev_sub:'Recenzije klijenata.',
-                rev_form_title:'Napiši recenziju', rev_form_sub:'Recenzija ne ide odmah na sajt. Prvo kontrola.',
-                rev_name:'Ime', rev_contact:'Telefon ili email', rev_car:'Auto / usluga', rev_rate:'Ocena', rev_text:'Tekst',
-                about_title:'O nama', about_text:'Specijalizovani smo za softver upravljačkih jedinica i kodiranje vozila. Profesionalni alati i dugogodišnje iskustvo.',
-                stat_years:'Godina iskustva', stat_cars:'Urađenih vozila', stat_ok:'Fokus na rezultat',
-                gal_title:'Galerija', con_title:'Kontakt', con_sub:'Zakaži termin ili pitaj za opcije za svoje vozilo.',
-                lbl_addr:'Adresa', lbl_hours:'Radno vreme', lbl_phone:'Telefon', lbl_email:'Email',
-                code_title:'Kodiranje', code_sub:'Online i offline kodiranje za Volkswagen, Audi, BMW, Mercedes, Škoda, SEAT/CUPRA i druge.',
-                v1:'► Putnička vozila', v2:'► Kombi', v3:'► Kamioni', v4:'► Motori', v5:'► Autobusi', v6:'► Traktori i građevinske mašine', v7:'► Brodovi',
-                d9:'► Immo off / kloniranje jedinice', d10:'► Vraćanje originalnog softvera', at_sub:'Slave / Master programiranje',
-                n1t:'Nova podrška BMW MDG1', n1p:'Čitanje i upis novijih BMW jedinica.', n2t:'VW / Audi MG1 i MD1', n2p:'Ažurirane procedure za novije VAG motore.', n3t:'Noviji Mercedes ECU', n3p:'Dodaj poslednji model koji ste uradili klijentu.',
-                p1:'Povećanje snage i momenta. Garancija 2 godine.', p2:'Naprednija mapa prema hardveru vozila.', p3:'Softverska rešenja problema sa sistemima.', p4:'Komfor, svetla, CarPlay, Start/Stop i ostalo.', p5:'Novi ključ, immo, uparivanje sa vozilom.',
-                k2:'► Programiranje i adaptacija', k3:'► Rezerva originalnog stanja',
-                c1t:'Komfor i multimedia', c2t:'Svetla i asistenti', c3t:'Ostale funkcije',
-                c1a:'• Video tokom vožnje', c1b:'• Aktivacija CarPlay / Android Auto', c1c:'• Needle sweep', c1d:'• Ambijentalno svetlo – više boja', c1e:'• AMG / Sport meni',
-                c2a:'• Dnevna svetla (DRL)', c2b:'• Zadnja DRL', c2c:'• Maglenke pri rikvercu', c2d:'• Isključivanje upozorenja za pojas', c2e:'• Isključivanje Start/Stop',
-                c3a:'• Lap Timer', c3b:'• Zaključavanje upaljenog auta', c3c:'• Temperatura grejanja sedišta', c3d:'• Isključivanje zadnjeg brisača na R', c3e:'• I još mnogo toga...'
-
-            }
-        };
-
-        let twTimer = null;
-        function startTypewriter(text) {
-            const el = document.getElementById('typewriter');
-            if (!el) return;
-            el.textContent = '';
-            let i = 0;
-            if (twTimer) clearTimeout(twTimer);
-            function step() {
-                if (i < text.length) {
-                    el.textContent += text.charAt(i);
-                    i++;
-                    twTimer = setTimeout(step, 40);
-                }
-            }
-            step();
-        }
-
-        function applyLang(lang) {
-            const dict = i18n[lang] || i18n.sk;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) el.textContent = dict[key];
-            });
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (dict[key]) el.setAttribute('placeholder', dict[key]);
-            });
-            document.documentElement.lang = lang === 'sr' ? 'sr' : lang;
-            localStorage.setItem('gtifab-lang', lang);
-            const a = document.getElementById('langSelect');
-            const b = document.getElementById('langSelectMobile');
-            if (a) a.value = lang;
-            if (b) b.value = lang;
-            startTypewriter(dict.hero_title || '');
-        }
-        const savedLang = localStorage.getItem('gtifab-lang') || 'sk';
-        applyLang(savedLang);
-        document.getElementById('langSelect')?.addEventListener('change', e => applyLang(e.target.value));
-        document.getElementById('langSelectMobile')?.addEventListener('change', e => applyLang(e.target.value));
-
-
-        const REVIEWS_SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1GFA_d8BMTEvdFw087xiwlTza3cliGXZ1vbS27B2fpTg/export?format=csv';
-        const REVIEWS_WRITE_URL = 'https://script.google.com/macros/s/AKfycbzsRtamlIGox8qSd5fgNeeuNF_fOy0cPOTalNOIJzY5XxB5P9JIOjuPgMYI6WCj38Iyrg/exec';
-
-        function parseCsv(text) {
-            const rows = [];
-            let row = [], cur = '', q = false;
-            for (let i = 0; i < text.length; i++) {
-                const c = text[i];
-                if (q) {
-                    if (c === '"') {
-                        if (text[i+1] === '"') { cur += '"'; i++; }
-                        else q = false;
-                    } else cur += c;
-                } else if (c === '"') q = true;
-                else if (c === ',') { row.push(cur); cur = ''; }
-                else if (c === '\n') { row.push(cur); rows.push(row); row = []; cur = ''; }
-                else if (c !== '\r') cur += c;
-            }
-            if (cur.length || row.length) { row.push(cur); rows.push(row); }
-            return rows;
-        }
-
-        function renderReviews(list) {
-            const grid = document.getElementById('reviewsGrid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            list.forEach(rev => {
-                const stars = Math.min(5, Math.max(1, parseInt(rev.stars, 10) || 5));
-                const card = document.createElement('div');
-                card.className = 'bg-gray-900 border border-gray-800 rounded-xl p-6';
-                card.innerHTML = '<div class="text-primary mb-3">' + '★'.repeat(stars) + '</div>' +
-                    '<p class="text-gray-300 mb-4"></p><p class="text-sm text-gray-500"></p>';
-                card.querySelectorAll('p')[0].textContent = rev.text || '';
-                card.querySelectorAll('p')[1].textContent = (rev.name || '') + (rev.car ? ' • ' + rev.car : '');
-                grid.appendChild(card);
-            });
-        }
-
-        fetch(REVIEWS_SHEET_CSV)
-            .then(r => r.text())
-            .then(csv => {
-                const rows = parseCsv(csv);
-                if (!rows.length) return;
-                const head = rows[0].map(x => String(x).trim().toLowerCase());
-                const idx = k => head.indexOf(k);
-                const list = rows.slice(1).map(r => ({
-                    name: r[idx('name')] || '',
-                    car: r[idx('car')] || '',
-                    stars: r[idx('stars')] || 5,
-                    text: r[idx('text')] || '',
-                    approved: String(r[idx('approved')] || '').trim().toLowerCase()
-                })).filter(r => r.text && (r.approved === 'da' || r.approved === 'yes' || r.approved === 'ano'));
-                renderReviews(list);
-            })
-            .catch(() => fetch('reviews.json').then(r => r.json()).then(renderReviews).catch(() => {}));
-
-        const reviewFormReady = Date.now();
-        document.getElementById('reviewForm')?.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (document.getElementById('revTrap').value) return;
-            if (Date.now() - reviewFormReady < 4000) {
-                alert('Skús to znova o chvíľu.');
-                return;
-            }
-            const name = document.getElementById('revName').value.trim();
-            const contact = document.getElementById('revContact').value.trim();
-            const car = document.getElementById('revCar').value.trim();
-            const stars = document.getElementById('revStars').value;
-            const text = document.getElementById('revText').value.trim();
-            const bad = /(http|www\.|viagra|crypto|seo |telegram)/i;
-            if (bad.test(name + ' ' + text)) {
-                alert('Recenzia vyzerá ako spam. Napíšte nám radšej na WhatsApp.');
-                return;
-            }
-            const msg = `Nová recenzia GTIFAB%0AMeno: ${encodeURIComponent(name)}%0AKontakt: ${encodeURIComponent(contact)}%0AAuto: ${encodeURIComponent(car)}%0AHodnotenie: ${stars}/5%0AText: ${encodeURIComponent(text)}`;
-            if (REVIEWS_WRITE_URL) {
-                const body = new URLSearchParams({ name, contact, car, stars, text });
-                fetch(REVIEWS_WRITE_URL, { method: 'POST', mode: 'no-cors', body });
-            }
-            window.open(`https://wa.me/421910870807?text=${msg}`, '_blank');
-            document.getElementById('revOk').classList.remove('hidden');
-            this.reset();
-        });
     </script>
+
+    <a href="https://wa.me/421910870807"
+        class="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20b358] text-white p-[14px] rounded-full shadow-2xl transition-transform hover:scale-110 z-50 flex items-center justify-center"
+        title="Kontaktujte nás na WhatsApp">
+        <svg viewBox="0 0 448 512" class="w-7 h-7 fill-current">
+            <path
+                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224-99.6 224-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-189.2 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+        </svg>
+    </a>
 </body>
+
 </html>
