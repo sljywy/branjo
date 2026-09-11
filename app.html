@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="GTIFAB">
+    <meta name="theme-color" content="#0b1220">
+    <title>GTIFAB Box</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#f5c400'}}}}</script>
+    <style>
+        html, body { background:#0b1220; height:100%; }
+        .card { background:#111827; border:1px solid #1f2937; }
+        .row-btn { background:#111827; border:1px solid #1f2937; }
+        .row-btn:active { background:#1f2937; }
+        .crumb.active { color:#f5c400; }
+        .crumb.done { color:#e5e7eb; }
+        .crumb.todo { color:#4b5563; }
+
+        /*
+          iOS "Add to Home Screen" fix:
+          status-bar-style is "black" (opaque) above, so iOS itself reserves
+          the status-bar strip and never lets it overlap tappable content.
+          The env() padding below is just an extra safety margin for the
+          notch / Dynamic Island on top of that, using max() so it never
+          collapses to 0 if a given iOS build reports it late.
+        */
+        header {
+            padding-top: max(env(safe-area-inset-top, 0px), 12px);
+        }
+        #lock {
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        body {
+            padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+
+    <div id="lock" class="fixed inset-0 z-50 bg-[#0b1220] flex items-center justify-center p-6">
+        <div class="w-full max-w-xs text-center">
+            <div class="text-primary font-bold tracking-widest text-xs mb-2">GTIFAB BOX</div>
+            <h2 class="text-2xl font-bold mb-4">PIN</h2>
+            <input id="pin" type="password" inputmode="numeric" maxlength="8"
+                class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-center text-2xl tracking-widest">
+            <button id="pinBtn" class="mt-4 w-full bg-primary text-black font-bold rounded-xl py-3">Otvoriť</button>
+            <p id="pinErr" class="hidden mt-3 text-red-400 text-sm">Nesprávny PIN</p>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-20 bg-[#0b1220]/95 border-b border-gray-800 px-4 py-3">
+        <div class="flex items-center justify-between">
+            <div>
+                <div class="text-primary font-bold tracking-widest text-xs">GTIFAB BOX</div>
+                <h1 class="text-xl font-bold">Chip lookup</h1>
+            </div>
+            <button id="resetBtn" class="hidden text-xs text-gray-400 border border-gray-700 rounded-lg px-3 py-2">⟲ Reset</button>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div id="crumbs" class="mt-3 flex items-center gap-1 text-sm font-medium overflow-x-auto whitespace-nowrap"></div>
+
+        <!-- Filter / quick search for current step -->
+        <input id="q" type="search"
+            class="mt-3 w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white">
+    </header>
+
+    <main class="px-4 pt-4">
+        <div id="quickHits" class="hidden space-y-2 mb-4"></div>
+        <div id="list" class="space-y-2"></div>
+        <div id="detail" class="hidden mt-2"></div>
+    </main>
+
+    <script src="vehicles.js"></script>
+    <script>
+        const qEl = document.getElementById('q');
+        const listEl = document.getElementById('list');
+        const detailEl = document.getElementById('detail');
+        const crumbsEl = document.getElementById('crumbs');
+        const quickHitsEl = document.getElementById('quickHits');
+        const resetBtn = document.getElementById('resetBtn');
+
+        const data = vehicleData || {};
+
+        // ---- split a model key like "A3 (8V - Mk2 - 2016 - 2019)" into
+        //      base = "A3", gen = "8V - Mk2 - 2016 - 2019" ----
+        function parseModel(key) {
+            const m = key.match(/^(.*?)\(([\s\S]*)\)\s*$/);
+            if (m) return { base: (m[1].trim() || key.trim()), gen: m[2].trim() };
+            return { base: key.trim(), gen: '' };
+        }
+
+        function yearKey(gen) {
+            const m = gen.match(/(\d{4})/);
+            return m ? parseInt(m[1], 10) : 9999;
+        }
+
+        // ---- flat index, for the "quick jump" search (typed full query) ----
+        const flatIndex = [];
+        Object.keys(data).forEach(make => {
+            Object.keys(data[make]).forEach(modelKey => {
+                Object.keys(data[make][modelKey]).forEach(engine => {
+                    flatIndex.push({
+                        make, modelKey, engine,
+                        base: parseModel(modelKey).base,
+                        data: data[make][modelKey][engine],
+                        text: (make + ' ' + modelKey + ' ' + engine).toLowerCase()
+                    });
+                });
+            });
+        });
+
+        // ---- state: step-by-step selection ----
+        // make -> base (model without year) -> modelKey (full "base (gen)") -> engine
+        let state = { make: null, base: null, modelKey: null, engine: null };
+
+        function sel(arr) { return [...arr].sort((a, b) => a.localeCompare(b, 'sk')); }
+
+        function currentStep() {
+            if (!state.make) return 'make';
+            if (!state.base) return 'base';
+            if (!state.modelKey) return 'gen';
+            if (!state.engine) return 'engine';
+            return 'detail';
+        }
+
+        const STEP_ORDER = ['make', 'base', 'gen', 'engine'];
+
+        function placeholders() {
+            return {
+                make: 'Pretraži marku...',
+                base: 'Pretraži model...',
+                gen: 'Pretraži rok / generáciu...',
+                engine: 'Pretraži motor...',
+                detail: 'Pretraži (nova pretraga)...'
+            }[currentStep()];
+        }
+
+        function renderCrumbs() {
+            const parts = [
+                { key: 'make', label: state.make || 'Marka' },
+                { key: 'base', label: state.base || 'Model' },
+                { key: 'gen', label: (state.modelKey ? parseModel(state.modelKey).gen : null) || 'Rok' },
+                { key: 'engine', label: state.engine || 'Motor' }
+            ];
+            const step = currentStep();
+            const stepIdx = step === 'detail' ? STEP_ORDER.length : STEP_ORDER.indexOf(step);
+            crumbsEl.innerHTML = parts.map((p, i) => {
+                let cls = 'todo';
+                if (i < stepIdx) cls = 'done';
+                if (i === stepIdx) cls = 'active';
+                const arrow = i > 0 ? '<span class="text-gray-600 mx-1">›</span>' : '';
+                const clickable = (p.key === 'make' && state.make) ||
+                                   (p.key === 'base' && state.base) ||
+                                   (p.key === 'gen' && state.modelKey) ||
+                                   (p.key === 'engine' && state.engine);
+                return arrow + '<button data-crumb="' + p.key + '" class="crumb ' + cls + (clickable ? '' : ' pointer-events-none') + '">' + p.label + '</button>';
+            }).join('');
+            crumbsEl.querySelectorAll('[data-crumb]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const k = btn.getAttribute('data-crumb');
+                    if (k === 'make') { state.base = null; state.modelKey = null; state.engine = null; }
+                    if (k === 'base') { state.modelKey = null; state.engine = null; }
+                    if (k === 'gen') { state.engine = null; }
+                    qEl.value = '';
+                    render();
+                });
+            });
+            resetBtn.classList.toggle('hidden', !state.make);
+        }
+
+        function makeRow(title, subtitle, onClick) {
+            const b = document.createElement('button');
+            b.className = 'row-btn w-full text-left rounded-xl p-3 flex items-center justify-between';
+            b.innerHTML = '<div><div class="font-semibold">' + title + '</div>' +
+                (subtitle ? '<div class="text-sm text-gray-400">' + subtitle + '</div>' : '') + '</div>' +
+                '<div class="text-gray-600">›</div>';
+            b.onclick = onClick;
+            return b;
+        }
+
+        function renderList() {
+            const step = currentStep();
+            const filter = qEl.value.trim().toLowerCase();
+            listEl.innerHTML = '';
+            detailEl.classList.add('hidden');
+            listEl.classList.remove('hidden');
+
+            if (step === 'make') {
+                sel(Object.keys(data)).filter(m => !filter || m.toLowerCase().includes(filter))
+                    .forEach(make => {
+                        const count = Object.keys(data[make]).length;
+                        listEl.appendChild(makeRow(make, count + ' modelov', () => {
+                            state.make = make; qEl.value = ''; render();
+                        }));
+                    });
+
+            } else if (step === 'base') {
+                const keys = Object.keys(data[state.make]);
+                const parsed = keys.map(k => ({ key: k, ...parseModel(k) }));
+                const bases = [...new Set(parsed.map(p => p.base))];
+                sel(bases).filter(b => !filter || b.toLowerCase().includes(filter))
+                    .forEach(base => {
+                        const gens = parsed.filter(p => p.base === base);
+                        const engineCount = gens.reduce((sum, p) => sum + Object.keys(data[state.make][p.key]).length, 0);
+                        const label = gens.length > 1 ? (gens.length + ' generácie · ' + engineCount + ' motorov') : (engineCount + ' motorov');
+                        listEl.appendChild(makeRow(base, label, () => {
+                            state.base = base; qEl.value = ''; render();
+                        }));
+                    });
+
+            } else if (step === 'gen') {
+                const keys = Object.keys(data[state.make]);
+                const parsed = keys.map(k => ({ key: k, ...parseModel(k) })).filter(p => p.base === state.base);
+                parsed.sort((a, b) => yearKey(a.gen) - yearKey(b.gen) || a.gen.localeCompare(b.gen, 'sk'));
+                parsed.filter(p => !filter || p.gen.toLowerCase().includes(filter))
+                    .forEach(p => {
+                        const count = Object.keys(data[state.make][p.key]).length;
+                        listEl.appendChild(makeRow(p.gen, count + ' motorov', () => {
+                            state.modelKey = p.key; qEl.value = ''; render();
+                        }));
+                    });
+
+            } else if (step === 'engine') {
+                sel(Object.keys(data[state.make][state.modelKey])).filter(m => !filter || m.toLowerCase().includes(filter))
+                    .forEach(engine => {
+                        const d = data[state.make][state.modelKey][engine];
+                        listEl.appendChild(makeRow(engine, (d.origHP || '?') + ' → ' + (d.tunedHP || '?') + ' KS', () => {
+                            state.engine = engine; qEl.value = ''; render();
+                        }));
+                    });
+            }
+
+            if (!listEl.children.length) {
+                listEl.innerHTML = '<div class="text-gray-500 text-sm p-3">Nič nenájdené.</div>';
+            }
+        }
+
+        function row(k, v) {
+            if (!v) return '';
+            return '<div class="flex justify-between gap-3 py-1 border-b border-gray-800 text-sm"><span class="text-gray-500">' + k + '</span><span class="text-right">' + v + '</span></div>';
+        }
+
+        function renderDetail() {
+            const d = data[state.make][state.modelKey][state.engine];
+            const gen = parseModel(state.modelKey).gen;
+            listEl.classList.add('hidden');
+            detailEl.classList.remove('hidden');
+
+            const oh = d.origHP, th = d.tunedHP, on = d.origNM, tn = d.tunedNM;
+            const diffHP = (oh != null && th != null) ? '+' + (th - oh) : null;
+            const diffNM = (on != null && tn != null) ? '+' + (tn - on) : null;
+
+            detailEl.innerHTML =
+                '<div class="card rounded-2xl p-4">' +
+                '<div class="text-primary text-sm">' + state.make + '</div>' +
+                '<div class="text-xl font-bold">' + state.base + '</div>' +
+                '<div class="text-gray-400">' + gen + '</div>' +
+                '<div class="text-gray-400 mb-4">' + state.engine + '</div>' +
+
+                '<div class="grid grid-cols-2 gap-3 mb-2">' +
+                '<div class="bg-gray-900 rounded-xl p-3">' +
+                '<div class="text-xs text-gray-500">Originál</div>' +
+                '<div class="text-2xl font-bold">' + (oh ?? '—') + ' KS</div>' +
+                '<div class="text-gray-400">' + (on ?? '—') + ' Nm</div></div>' +
+                '<div class="bg-gray-900 rounded-xl p-3">' +
+                '<div class="text-xs text-primary">' + (d.type || 'Stage 1') + '</div>' +
+                '<div class="text-2xl font-bold text-primary">' + (th ?? '—') + ' KS</div>' +
+                '<div class="text-primary">' + (tn ?? '—') + ' Nm</div></div>' +
+                '</div>' +
+                (diffHP || diffNM ? '<div class="text-sm text-gray-300 mb-4">' +
+                    (diffHP ? diffHP + ' KS' : '') + (diffHP && diffNM ? ' · ' : '') + (diffNM ? diffNM + ' Nm' : '') +
+                    '</div>' : '<div class="mb-2"></div>') +
+
+                '<div class="mt-2">' +
+                row('Palivo', d.fuel) + row('Metóda', d.method) + row('Typ úpravy', d.type) +
+                row('Objem', d.cc) + row('Kompresný pomer', d.comp) + row('Vŕtanie x zdvih', d.bore) +
+                row('Kód motora', d.enum) + row('Riadiaca jednotka', d.ecu) + row('Riadiaca jednotka prevodovky', d.gecu) +
+                '</div>' +
+
+                (d.tools && d.tools.length ?
+                    '<div class="mt-4"><div class="text-sm text-gray-400 mb-2">Nástroje na čítanie</div>' +
+                    '<div class="flex flex-wrap gap-2">' + d.tools.map(t => '<span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-gray-300 text-sm">' + t + '</span>').join('') + '</div></div>'
+                    : '') +
+
+                (d.opts && d.opts.length ?
+                    '<div class="mt-4"><div class="text-sm text-gray-400 mb-2">Ďalšie možnosti</div>' +
+                    '<div class="grid grid-cols-2 gap-2">' + d.opts.map(o => '<div class="bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm text-primary">' + o + '</div>').join('') + '</div></div>'
+                    : '') +
+
+                '</div>' +
+                '<button id="backEngine" class="mt-4 w-full bg-primary text-black font-bold rounded-xl py-3">‹ Iný motor</button>';
+
+            document.getElementById('backEngine').onclick = () => {
+                state.engine = null;
+                render();
+            };
+        }
+
+        // ---- quick jump: typing at the "make" step also searches across everything ----
+        function renderQuickHits() {
+            const step = currentStep();
+            const q = qEl.value.trim().toLowerCase();
+            if (step !== 'make' || q.length < 3) {
+                quickHitsEl.classList.add('hidden');
+                quickHitsEl.innerHTML = '';
+                return;
+            }
+            const hits = flatIndex.filter(x => x.text.includes(q)).slice(0, 15);
+            if (!hits.length) {
+                quickHitsEl.classList.add('hidden');
+                quickHitsEl.innerHTML = '';
+                return;
+            }
+            quickHitsEl.classList.remove('hidden');
+            quickHitsEl.innerHTML = '<div class="text-xs text-gray-500 px-1 mb-1">Rýchle výsledky</div>';
+            hits.forEach(h => {
+                const b = makeRow(h.make + ' ' + h.base, h.engine + ' · ' + (h.data.origHP || '?') + ' → ' + (h.data.tunedHP || '?') + ' KS', () => {
+                    state.make = h.make; state.base = h.base; state.modelKey = h.modelKey; state.engine = h.engine;
+                    qEl.value = '';
+                    render();
+                });
+                quickHitsEl.appendChild(b);
+            });
+        }
+
+        function render() {
+            renderCrumbs();
+            qEl.placeholder = placeholders();
+            const step = currentStep();
+            if (step === 'detail') {
+                quickHitsEl.classList.add('hidden');
+                qEl.value = '';
+                renderDetail();
+            } else {
+                renderList();
+                renderQuickHits();
+            }
+        }
+
+        qEl.addEventListener('input', () => {
+            renderList();
+            renderQuickHits();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            state = { make: null, base: null, modelKey: null, engine: null };
+            qEl.value = '';
+            render();
+        });
+
+        render();
+
+        // ---- PIN lock ----
+        const PIN = '4323';
+        const lock = document.getElementById('lock');
+        if (sessionStorage.getItem('gtifab-box') === 'ok') lock.classList.add('hidden');
+        function tryPin() {
+            if (document.getElementById('pin').value === PIN) {
+                sessionStorage.setItem('gtifab-box', 'ok');
+                lock.classList.add('hidden');
+            } else {
+                document.getElementById('pinErr').classList.remove('hidden');
+            }
+        }
+        document.getElementById('pinBtn').addEventListener('click', tryPin);
+        document.getElementById('pin').addEventListener('keydown', e => { if (e.key === 'Enter') tryPin(); });
+
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+    </script>
+</body>
+</html>
