@@ -13,13 +13,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{colors:{primary:'#f5c400'}}}}</script>
     <style>
-        body { background:#0b1220; }
+        body {
+            background:#0b1220;
+            /* Safe area dole + boky (landscape) */
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
         .card { background:#111827; border:1px solid #1f2937; }
+
+        /* Header – pod notch / Dynamic Island */
+        header {
+            padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
+        }
+
+        /* PIN lock – tiež pod notch a nad home indikátor */
+        #lock {
+            padding-top: calc(env(safe-area-inset-top, 0px) + 24px);
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+        }
     </style>
 </head>
-<body class="text-white min-h-screen pb-10">
+<body class="text-white min-h-screen">
     
-    <div id="lock" class="fixed inset-0 z-50 bg-[#0b1220] flex items-center justify-center p-6">
+    <div id="lock" class="fixed inset-0 z-50 bg-[#0b1220] flex items-center justify-center px-6">
         <div class="w-full max-w-xs text-center">
             <div class="text-primary font-bold tracking-widest text-xs mb-2">GTIFAB BOX</div>
             <h2 class="text-2xl font-bold mb-4">PIN</h2>
@@ -37,7 +54,7 @@
             class="mt-3 w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white">
     </header>
 
-    <main class="px-4 pt-4">
+    <main class="px-4 pt-4 pb-8">
         <div id="hits" class="space-y-2"></div>
         <div id="detail" class="hidden mt-4 card rounded-2xl p-4"></div>
     </main>
