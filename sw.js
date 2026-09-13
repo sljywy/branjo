@@ -1,8 +1,8 @@
-const CACHE = 'gtifab-box-v6.0.0';
+const CACHE = 'gtifab-box-v6.1.0';
 const APP_SHELL = [
   './app.html',
   './app.css?v=6.0',
-  './app.js?v=6.0',
+  './app.js?v=6.1',
   './vehicles.js?v=6.0',
   './manifest.json',
   './icons/icon-180.png',

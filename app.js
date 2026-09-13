@@ -2,6 +2,8 @@
   'use strict';
 
   const PIN = '4323';
+  const ACCESS_KEY = 'gtifab-box-access-until';
+  const ACCESS_DURATION = 24 * 60 * 60 * 1000;
   const RECENT_KEY = 'gtifab-box-recent-v2';
   const SAVED_KEY = 'gtifab-box-saved-v1';
   const LANGUAGE_KEY = 'gtifab-box-language';
@@ -106,8 +108,10 @@
     if (els.globalSearch.value.trim()) renderGlobalSearch();
   }
 
-  function unlock() {
-    sessionStorage.setItem('gtifab-box', 'ok');
+  function unlock(rememberAccess = false) {
+    if (rememberAccess) {
+      localStorage.setItem(ACCESS_KEY, String(Date.now() + ACCESS_DURATION));
+    }
     els.lock.hidden = true;
     els.app.hidden = false;
     document.body.classList.add('unlocked');
@@ -118,7 +122,8 @@
     event.preventDefault();
     if (els.pin.value === PIN) {
       els.pinErr.hidden = true;
-      unlock();
+      els.pin.value = '';
+      unlock(true);
     } else {
       els.pinErr.hidden = false;
       els.pin.select();
@@ -480,5 +485,10 @@
   renderBrowser();
   updateConnection();
   setupServiceWorker();
-  if (sessionStorage.getItem('gtifab-box') === 'ok') unlock();
+  const accessUntil = Number(localStorage.getItem(ACCESS_KEY));
+  if (Number.isFinite(accessUntil) && Date.now() < accessUntil) {
+    unlock();
+  } else {
+    localStorage.removeItem(ACCESS_KEY);
+  }
 })();
