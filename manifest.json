@@ -1,20 +1,34 @@
 {
-  "name": "GTIFAB Box",
-  "short_name": "GTIFAB",
+  "id": "/app.html",
+  "name": "GTIFAB Performance Box",
+  "short_name": "GTIFAB Box",
+  "description": "Offline databáza 10 000+ vozidiel a výkonových úprav GTIFAB.",
+  "lang": "sk",
   "start_url": "/app.html",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0b1220",
-  "theme_color": "#0b1220",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#07090d",
+  "theme_color": "#07090d",
+  "categories": ["automotive", "business", "utilities"],
   "icons": [
     {
-      "src": "logo.png",
-      "sizes": "192x192",
+      "src": "icons/icon-180.png",
+      "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "logo.png",
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
